@@ -1,29 +1,42 @@
 <svg width="82" height="78" viewBox="0 0 82 78" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="12.5" y="12.5" width="66" height="62" fill="#000809" stroke="black" stroke-width="7"/>
-<rect x="3.5" y="3.5" width="66" height="62" fill="#B3F2FF" stroke="black" stroke-width="7"/>
-<rect x="17" y="23.9497" width="3.42757" height="20.375" fill="black"/>
-<rect x="52.0371" y="23.9497" width="3.42757" height="20.7558" fill="black"/>
-<rect x="46.3242" y="49.8469" width="3.42757" height="20.375" transform="rotate(90 46.3242 49.8469)" fill="black"/>
-<rect x="25.9502" y="18.4277" width="3.42757" height="20.375" transform="rotate(-90 25.9502 18.4277)" fill="black"/>
-<rect x="18.5234" y="20.7126" width="3.42757" height="3.23715" fill="black"/>
-<rect width="3.42757" height="3.23715" transform="matrix(-1 0 0 1 53.752 20.9031)" fill="black"/>
-<rect width="3.42757" height="3.23715" transform="matrix(1 0 0 -1 18.5234 47.5618)" fill="black"/>
-<rect x="53.752" y="47.9429" width="3.42757" height="3.23715" transform="rotate(180 53.752 47.9429)" fill="black"/>
-<rect x="20.2373" y="18.2373" width="3.42757" height="3.23715" fill="black"/>
-<rect width="3.42757" height="3.23715" transform="matrix(-1 0 0 1 52.0371 18.4277)" fill="black"/>
-<rect width="3.42757" height="3.23715" transform="matrix(1 0 0 -1 20.2373 50.0374)" fill="black"/>
-<rect x="52.0371" y="50.4185" width="3.42757" height="3.23715" transform="rotate(180 52.0371 50.4185)" fill="black"/>
-<rect x="22.5215" y="16.5232" width="3.42757" height="3.23715" fill="black"/>
-<rect width="3.42757" height="3.23715" transform="matrix(-1 0 0 1 49.7529 16.7136)" fill="black"/>
-<rect width="3.42757" height="3.23715" transform="matrix(1 0 0 -1 22.5215 51.7512)" fill="black"/>
-<rect x="49.7529" y="52.1321" width="3.42757" height="3.23715" transform="rotate(180 49.7529 52.1321)" fill="black"/>
-<rect x="25.9502" y="29.8528" width="3.61799" height="8.37851" fill="black"/>
-<rect x="42.3252" y="29.8528" width="3.61799" height="8.37851" fill="black"/>
-<rect x="40.4209" y="24.3308" width="3.42757" height="8.75935" transform="rotate(90 40.4209 24.3308)" fill="black"/>
-<rect x="31.8535" y="43.9438" width="3.42757" height="8.37851" transform="rotate(-90 31.8535 43.9438)" fill="black"/>
-<rect x="28.6162" y="38.2314" width="3.23715" height="3.42757" fill="black"/>
-<rect x="40.2314" y="38.2314" width="3.23715" height="3.42757" fill="black"/>
-<rect x="40.4209" y="26.425" width="3.23715" height="3.42757" fill="black"/>
-<rect x="28.4248" y="26.425" width="3.23715" height="3.42757" fill="black"/>
-<rect x="44.6113" y="22.2361" width="3.23715" height="3.42757" fill="black"/>
+  <style>
+    .icon-foreground {
+      transition: transform 0.2s ease;
+    }
+    svg:hover .icon-foreground {
+      /* Move inner icon up-right while outer black box stays put */
+      transform: translate(4px, -4px);
+    }
+  </style>
+  <!-- Outer black background box (static) -->
+  <rect x="12.5" y="12.5" width="66" height="62" fill="#000809" stroke="black" stroke-width="7"/>
+  <!-- Foreground icon that moves on hover -->
+  <g class="icon-foreground">
+    <rect x="3.5" y="3.5" width="66" height="62" fill="#B3F2FF" stroke="black" stroke-width="7"/>
+    <rect x="17" y="23.9497" width="3.42757" height="20.375" fill="black"/>
+    <rect x="52.0371" y="23.9497" width="3.42757" height="20.7558" fill="black"/>
+    <rect x="46.3242" y="49.8469" width="3.42757" height="20.375" transform="rotate(90 46.3242 49.8469)" fill="black"/>
+    <rect x="25.9502" y="18.4277" width="3.42757" height="20.375" transform="rotate(-90 25.9502 18.4277)" fill="black"/>
+    <rect x="18.5234" y="20.7126" width="3.42757" height="3.23715" fill="black"/>
+    <rect width="3.42757" height="3.23715" transform="matrix(-1 0 0 1 53.752 20.9031)" fill="black"/>
+    <rect width="3.42757" height="3.23715" transform="matrix(1 0 0 -1 18.5234 47.5618)" fill="black"/>
+    <rect x="53.752" y="47.9429" width="3.42757" height="3.23715" transform="rotate(180 53.752 47.9429)" fill="black"/>
+    <rect x="20.2373" y="18.2373" width="3.42757" height="3.23715" fill="black"/>
+    <rect width="3.42757" height="3.23715" transform="matrix(-1 0 0 1 52.0371 18.4277)" fill="black"/>
+    <rect width="3.42757" height="3.23715" transform="matrix(1 0 0 -1 20.2373 50.0374)" fill="black"/>
+    <rect x="52.0371" y="50.4185" width="3.42757" height="3.23715" transform="rotate(180 52.0371 50.4185)" fill="black"/>
+    <rect x="22.5215" y="16.5232" width="3.42757" height="3.23715" fill="black"/>
+    <rect width="3.42757" height="3.23715" transform="matrix(-1 0 0 1 49.7529 16.7136)" fill="black"/>
+    <rect width="3.42757" height="3.23715" transform="matrix(1 0 0 -1 22.5215 51.7512)" fill="black"/>
+    <rect x="49.7529" y="52.1321" width="3.42757" height="3.23715" transform="rotate(180 49.7529 52.1321)" fill="black"/>
+    <rect x="25.9502" y="29.8528" width="3.61799" height="8.37851" fill="black"/>
+    <rect x="42.3252" y="29.8528" width="3.61799" height="8.37851" fill="black"/>
+    <rect x="40.4209" y="24.3308" width="3.42757" height="8.75935" transform="rotate(90 40.4209 24.3308)" fill="black"/>
+    <rect x="31.8535" y="43.9438" width="3.42757" height="8.37851" transform="rotate(-90 31.8535 43.9438)" fill="black"/>
+    <rect x="28.6162" y="38.2314" width="3.23715" height="3.42757" fill="black"/>
+    <rect x="40.2314" y="38.2314" width="3.23715" height="3.42757" fill="black"/>
+    <rect x="40.4209" y="26.425" width="3.23715" height="3.42757" fill="black"/>
+    <rect x="28.4248" y="26.425" width="3.23715" height="3.42757" fill="black"/>
+    <rect x="44.6113" y="22.2361" width="3.23715" height="3.42757" fill="black"/>
+  </g>
 </svg>

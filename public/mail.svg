@@ -1,5 +1,23 @@
 <svg width="82" height="78" viewBox="0 0 82 78" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="12.5" y="12.5" width="66" height="62" fill="#000809" stroke="black" stroke-width="7"/>
-<rect x="3.5" y="3.5" width="66" height="62" fill="#E6B3FF" stroke="black" stroke-width="7"/>
-<path d="M28.3549 21H18V49H25.4505V34.0411H27.8498V36.5982H32.901V39.1553H35.1741V41.5845H37.9522V39.1553H40.3515V36.4703H45.1502V33.9132H47.5495V49H55V21.3836H45.1502V23.9406H42.7509V26.3699H40.3515V28.9269H33.0273V26.3699H30.5017V24.0685H28.3549V21Z" stroke="black" stroke-width="3"/>
+  <style>
+    .icon-foreground {
+      transition: transform 0.2s ease;
+    }
+    svg:hover .icon-foreground {
+      transform: translate(4px, -4px);
+    }
+  </style>
+  <!-- Outer black background box (static) -->
+  <rect x="12.5" y="12.5" width="66" height="62" fill="#000809" stroke="black" stroke-width="7"/>
+  <!-- Foreground icon that moves on hover -->
+  <g class="icon-foreground">
+    <rect x="3.5" y="3.5" width="66" height="62" fill="#E6B3FF" stroke="black" stroke-width="7"/>
+    <!-- Outline M (no fill), so purple shows through -->
+    <path
+      d="M28.3549 21H18V49H25.4505V34.0411H27.8498V36.5982H32.901V39.1553H35.1741V41.5845H37.9522V39.1553H40.3515V36.4703H45.1502V33.9132H47.5495V49H55V21.3836H45.1502V23.9406H42.7509V26.3699H40.3515V28.9269H33.0273V26.3699H30.5017V24.0685H28.3549V21Z"
+      fill="none"
+      stroke="black"
+      stroke-width="3"
+    />
+  </g>
 </svg>

@@ -198,46 +198,199 @@ const LandingPage = () => {
         href="https://www.instagram.com/microsoft.innovations.vitc/"
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute top-1 right-52 z-50"
+        className="absolute top-1 right-40 z-50"
       >
-        <Image className = "Animated-Logo"
-          src="/insta.svg"
-          alt="Instagram Logo"
-          width={72}
-          height={78}
-          style={{ width: "90vw", maxWidth: 72, height: "auto", display: "block" }}
-          priority
-        />
+        {/* Inline SVG so only inner coloured square moves on hover */}
+        <svg
+          className="Animated-Logo"
+          width="88"
+          height="84"
+          viewBox="0 0 82 78"
+          aria-label="Instagram Logo"
+        >
+          {/* Outer black background (static) */}
+          <rect x="12.5" y="12.5" width="66" height="62" fill="#000809" stroke="black" strokeWidth="7" />
+          {/* Inner icon that slides on hover */}
+          <g className="icon-inner">
+            <rect x="3.5" y="3.5" width="66" height="62" fill="#B3F2FF" stroke="black" strokeWidth="7" />
+            <rect x="17" y="23.9497" width="3.42757" height="20.375" fill="black" />
+            <rect x="52.0371" y="23.9497" width="3.42757" height="20.7558" fill="black" />
+            <rect
+              x="46.3242"
+              y="49.8469"
+              width="3.42757"
+              height="20.375"
+              transform="rotate(90 46.3242 49.8469)"
+              fill="black"
+            />
+            <rect
+              x="25.9502"
+              y="18.4277"
+              width="3.42757"
+              height="20.375"
+              transform="rotate(-90 25.9502 18.4277)"
+              fill="black"
+            />
+            <rect x="18.5234" y="20.7126" width="3.42757" height="3.23715" fill="black" />
+            <rect
+              width="3.42757"
+              height="3.23715"
+              transform="matrix(-1 0 0 1 53.752 20.9031)"
+              fill="black"
+            />
+            <rect
+              width="3.42757"
+              height="3.23715"
+              transform="matrix(1 0 0 -1 18.5234 47.5618)"
+              fill="black"
+            />
+            <rect
+              x="53.752"
+              y="47.9429"
+              width="3.42757"
+              height="3.23715"
+              transform="rotate(180 53.752 47.9429)"
+              fill="black"
+            />
+            <rect x="20.2373" y="18.2373" width="3.42757" height="3.23715" fill="black" />
+            <rect
+              width="3.42757"
+              height="3.23715"
+              transform="matrix(-1 0 0 1 52.0371 18.4277)"
+              fill="black"
+            />
+            <rect
+              width="3.42757"
+              height="3.23715"
+              transform="matrix(1 0 0 -1 20.2373 50.0374)"
+              fill="black"
+            />
+            <rect
+              x="52.0371"
+              y="50.4185"
+              width="3.42757"
+              height="3.23715"
+              transform="rotate(180 52.0371 50.4185)"
+              fill="black"
+            />
+            <rect x="22.5215" y="16.5232" width="3.42757" height="3.23715" fill="black" />
+            <rect
+              width="3.42757"
+              height="3.23715"
+              transform="matrix(-1 0 0 1 49.7529 16.7136)"
+              fill="black"
+            />
+            <rect
+              width="3.42757"
+              height="3.23715"
+              transform="matrix(1 0 0 -1 22.5215 51.7512)"
+              fill="black"
+            />
+            <rect
+              x="49.7529"
+              y="52.1321"
+              width="3.42757"
+              height="3.23715"
+              transform="rotate(180 49.7529 52.1321)"
+              fill="black"
+            />
+            <rect x="25.9502" y="29.8528" width="3.61799" height="8.37851" fill="black" />
+            <rect x="42.3252" y="29.8528" width="3.61799" height="8.37851" fill="black" />
+            <rect
+              x="40.4209"
+              y="24.3308"
+              width="3.42757"
+              height="8.75935"
+              transform="rotate(90 40.4209 24.3308)"
+              fill="black"
+            />
+            <rect
+              x="31.8535"
+              y="43.9438"
+              width="3.42757"
+              height="8.37851"
+              transform="rotate(-90 31.8535 43.9438)"
+              fill="black"
+            />
+            <rect x="28.6162" y="38.2314" width="3.23715" height="3.42757" fill="black" />
+            <rect x="40.2314" y="38.2314" width="3.23715" height="3.42757" fill="black" />
+            <rect x="40.4209" y="26.425" width="3.23715" height="3.42757" fill="black" />
+            <rect x="28.4248" y="26.425" width="3.23715" height="3.42757" fill="black" />
+            <rect x="44.6113" y="22.2361" width="3.23715" height="3.42757" fill="black" />
+          </g>
+        </svg>
       </a>
       <a
         href="https://www.linkedin.com/company/microsoft-innovations-club-vitc/"
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute top-1 right-28 z-50"
+        className="absolute top-1 right-24 z-50"
       >
-        <Image className = "Animated-Logo"
-          src="/linkedin.svg"
-          alt="LinkedIn Logo"
-          width={72}
-          height={78}
-          style={{ width: "90vw", maxWidth: 72, height: "auto", display: "block" }}
-          priority
-        />
+        <svg
+          className="Animated-Logo"
+          width="88"
+          height="84"
+          viewBox="0 0 82 78"
+          aria-label="LinkedIn Logo"
+        >
+          <rect x="12.5" y="12.5" width="66" height="62" fill="#000809" stroke="black" strokeWidth="7" />
+          <g className="icon-inner">
+            <rect x="3.5" y="3.5" width="66" height="62" fill="#FFB3E6" stroke="black" strokeWidth="7" />
+            <rect x="15" y="20.0713" width="2.84558" height="30.7254" fill="black" />
+            <rect x="55.1543" y="20.3691" width="2.84558" height="30.4271" fill="black" />
+            <rect
+              x="52.625"
+              y="15"
+              width="2.68475"
+              height="32.25"
+              transform="rotate(90 52.625 15)"
+              fill="black"
+            />
+            <rect
+              x="20.375"
+              y="55.8677"
+              width="2.68475"
+              height="32.25"
+              transform="rotate(-90 20.375 55.8677)"
+              fill="black"
+            />
+            <rect x="17.5293" y="17.6851" width="2.84558" height="2.68475" fill="black" />
+            <rect x="52.625" y="17.6851" width="2.84558" height="2.68475" fill="black" />
+            <rect x="52.625" y="50.7964" width="2.84558" height="2.68475" fill="black" />
+            <rect x="17.5293" y="50.7964" width="2.84558" height="2.68475" fill="black" />
+            <rect x="22.9043" y="30.2134" width="5.37499" height="17.8983" fill="black" />
+            <rect x="22.9043" y="22.7559" width="5.37499" height="5.07119" fill="black" />
+            <rect x="33.6543" y="30.2134" width="5.37499" height="17.8983" fill="black" />
+            <rect x="44.7207" y="33.1968" width="5.37499" height="14.9153" fill="black" />
+            <rect x="37.4482" y="32.8984" width="12.647" height="2.68475" fill="black" />
+            <rect x="41.875" y="30.2134" width="5.37499" height="2.68475" fill="black" />
+          </g>
+        </svg>
       </a>
       <a
         href="mailto:mic.vit.chennai@gmail.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute top-1 right-5 z-50"
+        className="absolute top-1 right-8 z-50"
       >
-        <Image className = "Animated-Logo"
-          src="/mail.svg"
-          alt="Mail Logo"
-          width={72}
-          height={78}
-          style={{ width: "90vw", maxWidth: 72, height: "auto", display: "block" }}
-          priority
-        />
+        <svg
+          className="Animated-Logo"
+          width="88"
+          height="84"
+          viewBox="0 0 82 78"
+          aria-label="Mail Logo"
+        >
+          <rect x="12.5" y="12.5" width="66" height="62" fill="#000809" stroke="black" strokeWidth="7" />
+          <g className="icon-inner">
+            <rect x="3.5" y="3.5" width="66" height="62" fill="#E6B3FF" stroke="black" strokeWidth="7" />
+            <path
+              d="M28.3549 21H18V49H25.4505V34.0411H27.8498V36.5982H32.901V39.1553H35.1741V41.5845H37.9522V39.1553H40.3515V36.4703H45.1502V33.9132H47.5495V49H55V21.3836H45.1502V23.9406H42.7509V26.3699H40.3515V28.9269H33.0273V26.3699H30.5017V24.0685H28.3549V21Z"
+              fill="none"
+              stroke="black"
+              strokeWidth="3"
+            />
+          </g>
+        </svg>
       </a>
       {/* Trophy Icon - Static bottom-left position */}
       <button
