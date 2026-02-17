@@ -77,7 +77,7 @@ const sortEventsByDate = (eventsList: typeof events) => {
 	const now = new Date();
 	// Reset time to start of day for accurate date comparison
 	now.setHours(0, 0, 0, 0);
-	
+
 	const upcomingEvents = eventsList.filter((e) => e.startDate >= now);
 	const pastEvents = eventsList.filter((e) => e.startDate < now);
 
@@ -146,7 +146,7 @@ const CalendarIcon: React.FC<{ style?: React.CSSProperties }> = ({ style }) => (
 		style={style}
 	>
 		<rect x="3" y="5" width="18" height="16" rx="2" ry="2" fill="currentColor" opacity="0.25" />
-		<path d="M7 3v2M17 3v2M3 9h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+		<path d="M7 3v2M17 3v2M3 9h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
 	</svg>
 );
 
@@ -274,7 +274,7 @@ const LandingPage = () => {
 					>
 						x
 					</button>
-					<span className="font-press-start text-3xl mb-4" style={{fontSize: "clamp(20px, 4vw, 32px)"}}>
+					<span className="font-press-start text-3xl mb-4" style={{ fontSize: "clamp(20px, 4vw, 32px)" }}>
 						{event.title}
 					</span>
 					<div
@@ -332,8 +332,7 @@ const LandingPage = () => {
 	};
 
 	const getCardClass = (event: typeof events[0]) =>
-		`pixel-corners font-press-start ${event.bg} ${event.text} cursor-pointer transition-all duration-200${
-			openCard === null ? " hover:scale-105 hover:shadow-xl" : ""
+		`pixel-corners font-press-start ${event.bg} ${event.text} cursor-pointer transition-all duration-200${openCard === null ? " hover:scale-105 hover:shadow-xl" : ""
 		}`;
 
 	return (

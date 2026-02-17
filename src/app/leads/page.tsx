@@ -11,14 +11,14 @@ import RedCard from './components/RedCard';
 import BlueCard from './components/BlueCard';
 import GreenCard from './components/GreenCard';
 import YellowCard from './components/YellowCard';
-import YearButton from './components/YearButton';
+
 
 interface CloudFloatOptions {
   baseTop: string | number;
   baseLeft: string | number;
   amplitude?: number;
   speed?: number;
-  phase?: number; 
+  phase?: number;
 }
 
 interface LeadData {
@@ -75,14 +75,14 @@ function useCloudFloat({ baseTop, baseLeft, amplitude = 30, speed = 1, phase = 0
   return { top, left: baseLeft };
 }
 
-const Cloud = memo(({ 
-  position, 
-  src, 
-  index, 
-  view 
-}: { 
-  position: { top: string | number; left: string | number }; 
-  src: string; 
+const Cloud = memo(({
+  position,
+  src,
+  index,
+  view
+}: {
+  position: { top: string | number; left: string | number };
+  src: string;
   index: number;
   view: 'board' | 'departments';
 }) => (
@@ -91,7 +91,7 @@ const Cloud = memo(({
     alt={`Cloud ${index + 1}`}
     width={355}
     height={228}
-    style={{ 
+    style={{
       position: view === 'board' ? 'absolute' : 'fixed',
       top: position.top,
       left: position.left,
@@ -106,7 +106,7 @@ Cloud.displayName = 'Cloud';
 const MeetTheBoardPage: React.FC = () => {
   const [view, setView] = useState<'board' | 'departments'>('board');
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [selectedTenure, setSelectedTenure] = useState<string>('2025-2026');
+
 
   // Define cloud positions using hooks at the top level
   const cloudPositions = [
@@ -219,14 +219,13 @@ const MeetTheBoardPage: React.FC = () => {
 
   const themeColors = getThemeColors();
 
-  // Filter leads data by selected tenure
-  const filteredLeadsData = leadsData.filter(lead => lead.tenure === selectedTenure);
+
 
   // Prepare rows for departments view
   const rows = [];
   const cardsPerRow = 4;
-  for (let i = 0; i < filteredLeadsData.length; i += cardsPerRow) {
-    rows.push(filteredLeadsData.slice(i, i + cardsPerRow));
+  for (let i = 0; i < leadsData.length; i += cardsPerRow) {
+    rows.push(leadsData.slice(i, i + cardsPerRow));
   }
 
   return (
@@ -247,7 +246,7 @@ const MeetTheBoardPage: React.FC = () => {
           }}
         >
           {cloudPositions.map((pos, i) => (
-            <Cloud 
+            <Cloud
               key={i}
               position={pos}
               src={cloudImages[i]}
@@ -292,22 +291,7 @@ const MeetTheBoardPage: React.FC = () => {
             Meet the Team
           </h1>
 
-          {/* Tenure Selection Button - Absolute position */}
-          {view === 'departments' && (
-            <div 
-              className="absolute z-20"
-              style={{
-                top: 'clamp(60px, 10vh, 80px)',
-                left: 'clamp(65px, 7vw, 140px)',
-                width: 'clamp(140px, 14vw, 205px)',
-              }}
-            >
-              <YearButton 
-                selectedTenure={selectedTenure}
-                onTenureChange={setSelectedTenure}
-              />
-            </div>
-          )}
+
 
           {/* Navigation Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-8 relative z-10 w-full max-w-[720px] px-4">
