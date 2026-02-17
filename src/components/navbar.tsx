@@ -61,6 +61,7 @@ const CubeNavbar: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'center',
         }}
+        className="fixed bottom-8 right-4 z-[60] p-0 bg-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400"
       >
         <Image src="/nav_menu.svg" alt="Open Menu" width={36} height={36} />
       </button>
@@ -82,6 +83,7 @@ const CubeNavbar: React.FC = () => {
         opacity: 1,
         transform: 'rotate(0deg)',
       }}
+      aria-expanded={isOpen}
       role="dialog"
       aria-label="Navigation menu"
     >
