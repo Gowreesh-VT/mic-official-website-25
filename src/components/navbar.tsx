@@ -51,8 +51,8 @@ const CubeNavbar: React.FC = () => {
         onClick={() => setIsOpen(true)}
         className="fixed bottom-8 right-4 z-[60] p-0"
         style={{
-          width: 56,
-          height: 56,
+          width: 40,
+          height: 40,
           background: 'transparent',
           border: 'none',
           boxShadow: 'none',
@@ -63,7 +63,7 @@ const CubeNavbar: React.FC = () => {
         }}
         className="fixed bottom-8 right-4 z-[60] p-0 bg-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400"
       >
-        <Image src="/nav_menu.svg" alt="Open Menu" width={44} height={44} />
+        <Image src="/nav_menu.svg" alt="Open Menu" width={36} height={36} />
       </button>
     );
   }
@@ -74,10 +74,9 @@ const CubeNavbar: React.FC = () => {
       className="z-[60]"
       style={{
         position: 'fixed',
-        bottom: 20,
-        right: 20,
-        width: 380,
-        height: 716,
+        bottom: 16,
+        right: 12,
+        width: 240,
         background: 'transparent',
         borderRadius: 0,
         overflow: 'visible',
@@ -88,50 +87,21 @@ const CubeNavbar: React.FC = () => {
       role="dialog"
       aria-label="Navigation menu"
     >
-      {/* First border */}
+      {/* Background + border */}
       <div style={{
         position: 'absolute',
-        top: 15,
-        left: 7,
-        width: 380,
-        height: 716,
-        border: '4px solid #0A1627',
+        inset: 0,
+        background: 'rgba(10, 30, 60, 0.88)',
+        border: '3px solid #1B7A9E',
         borderRadius: 0,
-        background: 'transparent',
-        pointerEvents: 'none',
         zIndex: 1,
-      }} />
-      {/* In-between background */}
-      <div style={{
-        position: 'absolute',
-        top: 31,
-        left: 23,
-        width: 348,
-        height: 682,
-        background: 'rgba(25, 44, 85, 0.4)',
-        borderRadius: 0,
-        zIndex: 2,
-      }} />
-      {/* Second border */}
-      <div style={{
-        position: 'absolute',
-        top: 31,
-        left: 23,
-        width: 348,
-        height: 682,
-        border: '4px solid #00173C',
-        borderRadius: 0,
-        background: 'transparent',
-        opacity: 0.6,
-        zIndex: 3,
-        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 363px 100%, 363px 705px, 355px 705px, 355px 100%, 0 100%)',
       }} />
       {/* Hover styles */}
       <style>{`
         .cube-nav-link {
           transition: background 0.15s ease, box-shadow 0.15s ease;
           border: 3px solid transparent;
-          margin: 0 8px;
+          margin: 0 4px;
         }
         .cube-nav-link:hover {
           background: #0A1A2E;
@@ -141,29 +111,26 @@ const CubeNavbar: React.FC = () => {
       `}</style>
       {/* Content */}
       <div style={{
-        position: 'absolute',
-        top: 31,
-        left: 23,
-        width: 348,
-        height: 682,
+        position: 'relative',
         background: 'transparent',
         borderRadius: 0,
         zIndex: 4,
+        padding: '8px 4px',
       }}>
-        <nav className="font-press-start" style={{ padding: '32px 0 0 0', width: '100%' }}>
+        <nav className="font-press-start" style={{ padding: '16px 0 0 0', width: '100%' }}>
           {navItems.map((item) => (
             <a
               key={item.id}
               href={item.href}
-              className="cube-nav-link flex items-center gap-4 px-4 py-3"
+              className="cube-nav-link flex items-center gap-3 px-3 py-2"
               style={{ textDecoration: 'none', position: 'relative', borderRadius: 0 }}
               aria-label={item.name}
             >
               <Image
                 src={`/cube/${item.id}.svg`}
                 alt={`${item.name} Cube`}
-                width={36}
-                height={36}
+                width={24}
+                height={24}
                 className="flex-shrink-0"
               />
               <span
@@ -172,7 +139,7 @@ const CubeNavbar: React.FC = () => {
                   fontFamily: "'Press Start 2P'",
                   fontWeight: 400,
                   fontStyle: 'normal',
-                  fontSize: 16,
+                  fontSize: 11,
                   lineHeight: 1,
                   letterSpacing: '0.07em',
                   color: 'white',
@@ -187,33 +154,32 @@ const CubeNavbar: React.FC = () => {
             </a>
           ))}
         </nav>
-        <button
-          onClick={() => setIsOpen(false)}
-          aria-label="Close navigation"
-          style={{
-            position: 'absolute',
-            bottom: 16,
-            right: 16,
-            width: 48,
-            height: 48,
-            background: 'transparent',
-            border: 'none',
-            borderRadius: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: 'none',
-            zIndex: 10,
-          }}
-        >
-          <Image
-            src="/close_button.svg"
-            alt="Close"
-            width={32}
-            height={32}
-            className="object-contain"
-          />
-        </button>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '8px 12px 8px 0' }}>
+          <button
+            onClick={() => setIsOpen(false)}
+            aria-label="Close navigation"
+            style={{
+              width: 28,
+              height: 28,
+              background: 'transparent',
+              border: 'none',
+              borderRadius: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: 'none',
+              cursor: 'pointer',
+            }}
+          >
+            <Image
+              src="/close_button.svg"
+              alt="Close"
+              width={22}
+              height={22}
+              className="object-contain"
+            />
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -57,30 +57,30 @@ interface CloudFloatOptions {
 function useCloudFloat({ baseTop, baseLeft, amplitude = 30, speed = 1, phase = 0 }: CloudFloatOptions) {
   const [top, setTop] = useState(baseTop);
   const [left, setLeft] = useState(baseLeft);
-  
+
   const frame = useRef(0);
 
   useEffect(() => {
     let running = true;
-    
+
     function animate() {
       frame.current += 1;
       const t = frame.current / 60;
       setTop(baseTop + Math.sin(t * speed + phase) * amplitude);
       if (running) requestAnimationFrame(animate);
     }
-    
+
     animate();
-    
+
     function handleResize() {
       const vw = window.innerWidth;
       const scale = vw / 1920;
       setLeft(baseLeft * scale);
     }
-    
+
     handleResize();
     window.addEventListener('resize', handleResize);
-    
+
     return () => {
       running = false;
       window.removeEventListener('resize', handleResize);
@@ -99,11 +99,11 @@ const Clouds = ({ clouds }: { clouds: { top: number; left: number }[] }) => (
         alt={`Cloud ${idx + 1}`}
         width={idx % 3 === 2 ? 204 : idx % 3 === 1 ? 367 : 355}
         height={idx % 3 === 2 ? 125 : idx % 3 === 1 ? 219 : 228}
-        style={{ 
-          position: 'absolute', 
-          top: `${cloud.top}px`, 
-          left: `${cloud.left}px`, 
-          zIndex: 2 
+        style={{
+          position: 'absolute',
+          top: `${cloud.top}px`,
+          left: `${cloud.left}px`,
+          zIndex: 2
         }}
         priority
       />
@@ -113,7 +113,7 @@ const Clouds = ({ clouds }: { clouds: { top: number; left: number }[] }) => (
 
 
 const LandingPage = () => {
-    const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [showLeaderboardWidget, setShowLeaderboardWidget] = useState(false);
   const [animationStep, setAnimationStep] = useState(0);
 
@@ -133,32 +133,29 @@ const LandingPage = () => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "auto"; 
+      document.body.style.overflow = "auto";
     };
   }, []);
 
   // Manage animation sequence steps
+  // Steps: 1=1ST.png, 2=2ND.png, 3=3RD.png (final)
   useEffect(() => {
     if (showLeaderboardWidget) {
-      const timer3 = setTimeout(() => setAnimationStep(3), 1200); // Podium emerge
-      const timer4 = setTimeout(() => setAnimationStep(4), 2000); // Ghosts appear
-      const timer5 = setTimeout(() => setAnimationStep(5), 2500); // Red banner
-      const timer6 = setTimeout(() => setAnimationStep(6), 3500); // Blue banner
-      const timer7 = setTimeout(() => setAnimationStep(7), 4500); // Green banner
+      const timer1 = setTimeout(() => setAnimationStep(1), 0);     // 1st name banner (1ST.png)
+      const timer2 = setTimeout(() => setAnimationStep(2), 1000);  // 2nd name banner (2ND.png)
+      const timer3 = setTimeout(() => setAnimationStep(3), 2000);  // 3rd name banner (3RD.png)
 
       return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
         clearTimeout(timer3);
-        clearTimeout(timer4);
-        clearTimeout(timer5);
-        clearTimeout(timer6);
-        clearTimeout(timer7);
       };
     } else {
       setAnimationStep(0);
     }
   }, [showLeaderboardWidget]);
 
-   const getThemeColors = () => {
+  const getThemeColors = () => {
     return isDarkMode
       ? {
         background: "linear-gradient(to bottom, #00040d 0%, #002855 100%)",
@@ -173,221 +170,156 @@ const LandingPage = () => {
   };
   const themeColors = getThemeColors();
   useEffect(() => {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        setIsDarkMode(mediaQuery.matches);
-        const handleChange = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
-        mediaQuery.addEventListener('change', handleChange);
-        return () => mediaQuery.removeEventListener('change', handleChange);
-      }, []);
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDarkMode(mediaQuery.matches);
+    const handleChange = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  // Determine which image to show based on animation step
+  const getLeaderboardImage = () => {
+    if (animationStep >= 3) return "/3RD.png";
+    if (animationStep >= 2) return "/2ND.png";
+    if (animationStep >= 1) return "/1ST.png";
+    return null;
+  };
 
   return (
     <div className="w-full min-h-screen flex flex-col  relative overflow-hidden" style={{
-              backgroundImage: `
+      backgroundImage: `
                 linear-gradient(to right, ${themeColors.gridOpacity} 1px, transparent 1px),
                 linear-gradient(to bottom, ${themeColors.gridOpacity} 1px, transparent 1px),
                 ${themeColors.background}
               `,
-              backgroundSize: "30px 30px, 30px 30px, 100% 100%",
-              backgroundRepeat: "repeat, repeat, no-repeat",
-              backgroundPosition: "top left, top left, center",
-              userSelect: "none",
-            }}>
-    <div className="w-full min-h-screen flex flex-col mt-5 relative overflow-hidden">
-      
-      <a
-        href="https://www.instagram.com/microsoft.innovations.vitc/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="absolute top-1 right-52 z-50"
-      >
-        <Image className = "Animated-Logo"
-          src="/insta.svg"
-          alt="Instagram Logo"
-          width={72}
-          height={78}
-          style={{ width: "90vw", maxWidth: 72, height: "auto", display: "block" }}
-          priority
-        />
-      </a>
-      <a
-        href="https://www.linkedin.com/company/microsoft-innovations-club-vitc/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="absolute top-1 right-28 z-50"
-      >
-        <Image className = "Animated-Logo"
-          src="/linkedin.svg"
-          alt="LinkedIn Logo"
-          width={72}
-          height={78}
-          style={{ width: "90vw", maxWidth: 72, height: "auto", display: "block" }}
-          priority
-        />
-      </a>
-      <a
-        href="mailto:mic.vit.chennai@gmail.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="absolute top-1 right-5 z-50"
-      >
-        <Image className = "Animated-Logo"
-          src="/mail.svg"
-          alt="Mail Logo"
-          width={72}
-          height={78}
-          style={{ width: "90vw", maxWidth: 72, height: "auto", display: "block" }}
-          priority
-        />
-      </a>
-      {/* Trophy Icon - Static bottom-left position */}
-      <button
-        id="trophy-icon"
-        type="button"
-        aria-label="Show leaderboard preview"
-        className="absolute bottom-8 left-8 z-50 hover:scale-110 transition-transform duration-200"
-        onClick={() => {
-          if (!showLeaderboardWidget) {
-            setShowLeaderboardWidget(true);
-          } else {
-            setShowLeaderboardWidget(false);
-            setAnimationStep(0);
-          }
-        }}
-        style={{
-          opacity: showLeaderboardWidget ? 0 : 1,
-          transition: "opacity 0.4s ease-out",
-        }}
-      >
-        <Image
-          src="/cup_home.svg"
-          alt="Leaderboard Logo"
-          width={48}
-          height={52}
-          style={{ display: "block" }}
-          priority
-        />
-      </button>
+      backgroundSize: "30px 30px, 30px 30px, 100% 100%",
+      backgroundRepeat: "repeat, repeat, no-repeat",
+      backgroundPosition: "top left, top left, center",
+      userSelect: "none",
+    }}>
+      <div className="w-full min-h-screen flex flex-col mt-5 relative overflow-hidden">
 
-      {/* Animation Container - Hidden by default */}
-      <div
-        style={{
-          opacity: showLeaderboardWidget ? 1 : 0,
-          pointerEvents: showLeaderboardWidget ? "auto" : "none",
-          transition: "opacity 0.3s ease-out",
-        }}
-      >
+        <a
+          href="https://www.instagram.com/microsoft.innovations.vitc/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute top-1 right-52 z-50"
+        >
+          <Image className="Animated-Logo"
+            src="/insta.svg"
+            alt="Instagram Logo"
+            width={72}
+            height={78}
+            style={{ width: "90vw", maxWidth: 72, height: "auto", display: "block" }}
+            priority
+          />
+        </a>
+        <a
+          href="https://www.linkedin.com/company/microsoft-innovations-club-vitc/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute top-1 right-28 z-50"
+        >
+          <Image className="Animated-Logo"
+            src="/linkedin.svg"
+            alt="LinkedIn Logo"
+            width={72}
+            height={78}
+            style={{ width: "90vw", maxWidth: 72, height: "auto", display: "block" }}
+            priority
+          />
+        </a>
+        <a
+          href="mailto:mic.vit.chennai@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute top-1 right-5 z-50"
+        >
+          <Image className="Animated-Logo"
+            src="/mail.svg"
+            alt="Mail Logo"
+            width={72}
+            height={78}
+            style={{ width: "90vw", maxWidth: 72, height: "auto", display: "block" }}
+            priority
+          />
+        </a>
+        {/* Trophy Icon - Static bottom-left position */}
+        {!showLeaderboardWidget && (
+          <button
+            id="trophy-icon"
+            type="button"
+            aria-label="Show leaderboard preview"
+            className="absolute bottom-8 left-8 z-50 hover:scale-110 transition-transform duration-200"
+            onClick={() => {
+              setShowLeaderboardWidget(true);
+            }}
+          >
+            <Image
+              src="/cup_home.svg"
+              alt="Leaderboard Logo"
+              width={48}
+              height={52}
+              style={{ display: "block" }}
+              priority
+            />
+          </button>
+        )}
+
+        {/* Leaderboard Podium Animation */}
         <AnimatePresence>
           {showLeaderboardWidget && (
-            <>
-              {/* Yellow Square Box - Moves slightly right */}
-              {animationStep < 5 && (
+            <motion.div
+              className="absolute z-50"
+              style={{
+                left: 24,
+                bottom: 24,
+                cursor: "pointer",
+              }}
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              onClick={() => {
+                setShowLeaderboardWidget(false);
+                setAnimationStep(0);
+              }}
+            >
+              {/* Progressive banner images: 1ST.png -> 2ND.png -> 3RD.png */}
+              {animationStep >= 1 && (
                 <motion.div
-                  id="leaderboard-box"
-                  initial={{ 
-                    opacity: 0,
-                    left: 32,
-                    bottom: 32,
-                    scale: 0.6
-                  }}
-                  animate={{ 
-                    opacity: 1,
-                    left: 150,
-                    bottom: 32,
-                    scale: 1,
-                  }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
-                  style={{
-                    position: "absolute",
-                    width: 50,
-                    height: 50,
-                    background: "#FFEE99",
-                    border: "3px solid #000000",
-                    boxSizing: "border-box",
-                    zIndex: 45,
-                  }}
-                />
-              )}
-
-              {/* Banners replace yellow box at exact same position */}
-              {animationStep >= 5 && (
-                <motion.div
-                  className="absolute z-50"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  style={{
-                    left: 150,
-                    bottom: 32,
-                  }}
+                  style={{ position: "relative" }}
+                  initial={{ y: 80, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <AnimatePresence mode="wait">
-                    {animationStep === 5 && (
-                      <motion.div
-                        key="banner-1"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        transition={{ duration: 0.4 }}
-                      >
-                        <Image
-                          src="/1ST.png"
-                          alt="1st place banner"
-                          width={300}
-                          height={400}
-                          style={{ imageRendering: "pixelated", display: "block" }}
-                        />
-                      </motion.div>
-                    )}
-                    {animationStep === 6 && (
-                      <motion.div
-                        key="banner-2"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        transition={{ duration: 0.4 }}
-                      >
-                        <Image
-                          src="/2ND.png"
-                          alt="2nd place banner"
-                          width={300}
-                          height={400}
-                          style={{ imageRendering: "pixelated", display: "block" }}
-                        />
-                      </motion.div>
-                    )}
-                    {animationStep === 7 && (
-                      <motion.div
-                        key="banner-3"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        transition={{ duration: 0.4 }}
-                      >
-                        <Image
-                          src="/3RD.png"
-                          alt="3rd place banner"
-                          width={300}
-                          height={400}
-                          style={{ imageRendering: "pixelated", display: "block" }}
-                        />
-                      </motion.div>
-                    )}
+                    <motion.div
+                      key={getLeaderboardImage()}
+                      initial={{ y: -20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
+                    >
+                      <Image
+                        src={getLeaderboardImage()!}
+                        alt="Leaderboard"
+                        width={200}
+                        height={280}
+                        style={{ imageRendering: "pixelated", display: "block" }}
+                      />
+                    </motion.div>
                   </AnimatePresence>
                 </motion.div>
               )}
-
-
-            </>
+            </motion.div>
           )}
         </AnimatePresence>
-      </div>
 
-      <Clouds clouds={cloudPositions} />
-      <ClubLogo />
-      <Cube />
-    </div>
+        <Clouds clouds={cloudPositions} />
+        <ClubLogo />
+        <Cube />
+      </div>
     </div>
   );
 };

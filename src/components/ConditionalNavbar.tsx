@@ -10,8 +10,8 @@ const Logo = () => (
   <Image
     src="/images/mic-logo.png"
     alt="MIC Logo"
-    width={80}
-    height={80}
+    width={95}
+    height={95}
     style={{ position: 'fixed', top: 20, left: 20, zIndex: 50, cursor: 'pointer' }}
     priority
   />
