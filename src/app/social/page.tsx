@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
@@ -114,7 +114,7 @@ export default function SocialPage() {
       setPageHeight(window.innerHeight);
       setScreenSize({ width: window.innerWidth, height: window.innerHeight });
     };
-    
+
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
@@ -124,13 +124,7 @@ export default function SocialPage() {
     ? "linear-gradient(to bottom, #0a2540 60%, #1e3c72 100%)"
     : "linear-gradient(to bottom, #eaf1fb 60%, #b5d0f7 100%)";
 
-  const handleToggle = () => {
-    setFade(true);
-    setDarkMode((d) => !d);
-    setTimeout(() => {
-      setFade(false);
-    }, 400);
-  };
+
 
   function getBranchCount(height: string) {
     if (pageHeight === null) return 0;
@@ -164,7 +158,7 @@ export default function SocialPage() {
         filter: fade ? "brightness(0.7)" : "none",
         transitionProperty: "background, filter",
         transitionDuration: "0.4s",
-        minHeight: "600px", 
+        minHeight: "600px",
       }}
     >
       {/* star dots with percentage positioning */}
@@ -194,7 +188,7 @@ export default function SocialPage() {
           height: "100%",
           backgroundImage:
             "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
-          backgroundSize: isMobile 
+          backgroundSize: isMobile
             ? `${Math.max(20, screenSize.width * 0.04)}px ${Math.max(20, screenSize.width * 0.04)}px`
             : `${Math.max(30, screenSize.width * 0.03)}px ${Math.max(30, screenSize.width * 0.03)}px`,
           zIndex: 0,
@@ -205,7 +199,7 @@ export default function SocialPage() {
       {/*  clouds - responsive for mobile */}
       {clouds.map((cloud, i) => {
         // Adjust cloud positions for mobile to ensure visibility
-        const adjustedLeft = isMobile 
+        const adjustedLeft = isMobile
           ? Math.max(parseFloat(cloud.style.left), 0) + '%' // Ensure clouds don't go off-screen
           : cloud.style.left;
         const adjustedTop = isMobile
@@ -318,7 +312,7 @@ export default function SocialPage() {
                 ))}
               </div>
             </div>
-            
+
             {/* Bottom pipe */}
             <div
               style={{
@@ -427,10 +421,10 @@ export default function SocialPage() {
                 e.currentTarget.style.transform = "scale(1)";
               }}
             >
-              <Image 
-                src={icon.src} 
-                alt={icon.alt} 
-                width={getResponsiveSize(icon.width)} 
+              <Image
+                src={icon.src}
+                alt={icon.alt}
+                width={getResponsiveSize(icon.width)}
                 height={getResponsiveSize(icon.height)}
                 style={{
                   width: "50px",
@@ -465,10 +459,10 @@ export default function SocialPage() {
               e.currentTarget.style.transform = "scale(1)";
             }}
           >
-            <Image 
-              src={icon.src} 
-              alt={icon.alt} 
-              width={getResponsiveSize(icon.width)} 
+            <Image
+              src={icon.src}
+              alt={icon.alt}
+              width={getResponsiveSize(icon.width)}
               height={getResponsiveSize(icon.height)}
               style={{
                 maxWidth: "8vw",
@@ -535,7 +529,7 @@ export default function SocialPage() {
         }}
         tabIndex={0}
       >
-      </button>                         
+      </button>
     </div>
   );
 }
