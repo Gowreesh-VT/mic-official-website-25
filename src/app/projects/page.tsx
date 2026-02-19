@@ -201,117 +201,117 @@ const ProjectsPage: React.FC = () => {
       ) : (
         <>
           <div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
-             {cloudConfig.map((config, index) => (
-                <Cloud key={index} config={config} />
-              ))}
+            {cloudConfig.map((config, index) => (
+              <Cloud key={index} config={config} />
+            ))}
+          </div>
+
+          {/* Header - positioned across full screen width for true centering */}
+          <div className="absolute top-0 left-0 w-full px-6 py-4 lg:pt-8 lg:pb-2 z-30 pointer-events-none">
+            <h1 className={`${themeColors.textColor} font-press-start z-10 text-center`}
+              style={{ fontSize: "clamp(1rem, 4.5vw, 3rem)" }}>
+              Projects
+            </h1>
           </div>
 
           {/* LEFT SIDE: Content Container */}
-          <div className="flex-1 h-full flex flex-col relative z-20 min-w-0">
-            
-            {/* Header */}
-            {/* FIX: Reduced padding significantly on laptop (lg:pl-8) to give width back to content */}
-            <div className="px-6 py-4 lg:pl-8 xl:pl-56 lg:pt-8 lg:pb-2 transition-all duration-300">
-              <h1 className={`font-press-start ${themeColors.textColor} tracking-tight text-3xl lg:text-5xl`}>
-                Projects
-              </h1>
-            </div>
+          <div className="flex-1 h-full flex flex-col relative z-20 min-w-0 pt-20 lg:pt-24">
 
             {/* Content Box */}
             {/* FIX: Reduced padding lg:pl-8. Reduced gap between image and text */}
             <div className="flex-1 flex items-center justify-center p-4 lg:pl-8 lg:pr-4 xl:pl-56 xl:pr-12 relative transition-all duration-300">
-               <div className="relative w-full max-w-5xl flex gap-6 lg:gap-8 xl:gap-12 items-center justify-center lg:justify-start">
-                  
-                  {/* Borders */}
-                  <div className="absolute -inset-8 pointer-events-none z-0 opacity-50 hidden lg:block">
-                     <Image src={'/images/borders/tt.png'} alt='' width={32} height={32} className='absolute top-0 left-0'/>
-                     <Image src={'/images/borders/tr.png'} alt='' width={32} height={32} className='absolute top-0 right-0'/>
-                     <Image src={'/images/borders/bl.png'} alt='' width={32} height={32} className='absolute bottom-0 left-0'/>
-                     <Image src={'/images/borders/rb.png'} alt='' width={32} height={32} className='absolute bottom-0 right-0'/>
-                  </div>
+              <div className="relative w-full max-w-5xl flex gap-6 lg:gap-8 xl:gap-12 items-center justify-center lg:justify-start">
 
-                  {/* Project Image */}
-                  {/* FIX: w-[280px] on laptop (lg), w-[460px] on monitor (xl). This prevents squishing. */}
-                  <div className="relative z-10 hidden md:flex items-center justify-center w-[200px] lg:w-[280px] xl:w-[460px] flex-shrink-0 transition-all duration-300">
-                    <div className="relative w-full aspect-square bg-[#dde3eb] border-[6px] lg:border-[10px] border-black overflow-hidden shadow-xl">
-                      <Image
-                        src={activeProject.previewImage}
-                        alt={activeProject.title}
-                        fill
-                        className="object-cover"
-                        priority
-                      />
-                      <div className="absolute inset-4 border-[4px] border-white/70 pointer-events-none" />
+                {/* Borders */}
+                <div className="absolute -inset-8 pointer-events-none z-0 opacity-50 hidden lg:block">
+                  <Image src={'/images/borders/tt.png'} alt='' width={32} height={32} className='absolute top-0 left-0' />
+                  <Image src={'/images/borders/tr.png'} alt='' width={32} height={32} className='absolute top-0 right-0' />
+                  <Image src={'/images/borders/bl.png'} alt='' width={32} height={32} className='absolute bottom-0 left-0' />
+                  <Image src={'/images/borders/rb.png'} alt='' width={32} height={32} className='absolute bottom-0 right-0' />
+                </div>
+
+                {/* Project Image */}
+                {/* FIX: w-[280px] on laptop (lg), w-[460px] on monitor (xl). This prevents squishing. */}
+                <div className="relative z-10 hidden md:flex items-center justify-center w-[200px] lg:w-[280px] xl:w-[460px] flex-shrink-0 transition-all duration-300">
+                  <div className="relative w-full aspect-square bg-[#dde3eb] border-[6px] lg:border-[10px] border-black overflow-hidden shadow-xl">
+                    <Image
+                      src={activeProject.previewImage}
+                      alt={activeProject.title}
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                    <div className="absolute inset-4 border-[4px] border-white/70 pointer-events-none" />
+                  </div>
+                </div>
+
+                {/* Project Text Info */}
+                <div className="flex-1 flex flex-col justify-center gap-4 lg:gap-6 z-10 min-w-0">
+                  <div className="space-y-3 lg:space-y-4">
+                    <div className="flex flex-wrap items-center gap-3 lg:gap-4">
+                      {/* FIX: Text scales: text-xl (mobile) -> text-2xl (laptop) -> text-3xl (monitor) */}
+                      <h2 className="font-press-start text-white text-xl lg:text-2xl xl:text-3xl leading-tight">
+                        {activeProject.title}
+                      </h2>
+                      <span className="px-3 py-1 text-[10px] lg:text-xs font-press-start bg-pink-200 text-black border-2 border-black whitespace-nowrap">
+                        {activeProject.status}
+                      </span>
                     </div>
-                  </div>
 
-                  {/* Project Text Info */}
-                  <div className="flex-1 flex flex-col justify-center gap-4 lg:gap-6 z-10 min-w-0">
-                    <div className="space-y-3 lg:space-y-4">
-                      <div className="flex flex-wrap items-center gap-3 lg:gap-4">
-                        {/* FIX: Text scales: text-xl (mobile) -> text-2xl (laptop) -> text-3xl (monitor) */}
-                        <h2 className="font-press-start text-white text-xl lg:text-2xl xl:text-3xl leading-tight">
-                          {activeProject.title}
-                        </h2>
-                        <span className="px-3 py-1 text-[10px] lg:text-xs font-press-start bg-pink-200 text-black border-2 border-black whitespace-nowrap">
-                          {activeProject.status}
-                        </span>
-                      </div>
+                    {/* FIX: Text scales: text-xs (laptop) -> text-lg (monitor). This ensures it fits. */}
+                    <p className="text-sm lg:text-sm xl:text-lg leading-relaxed text-slate-100 max-w-2xl font-mono">
+                      {activeProject.description}
+                    </p>
 
-                      {/* FIX: Text scales: text-xs (laptop) -> text-lg (monitor). This ensures it fits. */}
-                      <p className="text-sm lg:text-sm xl:text-lg leading-relaxed text-slate-100 max-w-2xl font-mono">
-                        {activeProject.description}
+                    <div className="space-y-2 lg:space-y-3">
+                      <p className="font-press-start text-[10px] lg:text-xs tracking-wide text-white">
+                        Tech Stack:
                       </p>
-
-                      <div className="space-y-2 lg:space-y-3">
-                        <p className="font-press-start text-[10px] lg:text-xs tracking-wide text-white">
-                          Tech Stack:
-                        </p>
-                        <div className="flex flex-wrap gap-2 lg:gap-3">
-                          {activeProject.techStack.map((tech) => (
-                            <span
-                              key={tech}
-                              className="px-3 py-1 text-[10px] lg:text-xs font-mono bg-black text-white border border-white/40 uppercase"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
+                      <div className="flex flex-wrap gap-2 lg:gap-3">
+                        {activeProject.techStack.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1 text-[10px] lg:text-xs font-mono bg-black text-white border border-white/40 uppercase"
+                          >
+                            {tech}
+                          </span>
+                        ))}
                       </div>
                     </div>
-
-                    <div className="flex flex-wrap gap-3 lg:gap-4 mt-2">
-                      {activeProject.codeUrl && (
-                        <Link
-                          href={activeProject.codeUrl}
-                          target="_blank" // Opens in new tab
-                          rel="noopener noreferrer" // Security best practice
-                          className="inline-flex items-center gap-2 lg:gap-3 px-4 lg:px-5 py-2 lg:py-3 text-[10px] lg:text-xs xl:text-sm font-press-start bg-black text-white border-2 border-white hover:translate-y-[-2px] active:translate-y-[0px] transition-transform shadow-lg"
-                        >
-                          {/* GitHub Icon SVG */}
-                          <svg className="w-4 h-4 lg:w-5 lg:h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                          </svg>
-                          <span>CODE</span>
-                        </Link>
-                      )}
-                      {activeProject.demoUrl && (
-                        <Link
-                          href={activeProject.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 lg:gap-3 px-4 lg:px-5 py-2 lg:py-3 text-[10px] lg:text-xs xl:text-sm font-press-start bg-pink-200 text-black border-2 border-black hover:translate-y-[-2px] active:translate-y-[0px] transition-transform shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-                        >
-                          {/* External Link Icon SVG */}
-                          <svg className="w-4 h-4 lg:w-5 lg:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                          </svg>
-                          <span>DEMO</span>
-                        </Link>
-                      )}
-                    </div>
                   </div>
-               </div>
+
+                  <div className="flex flex-wrap gap-3 lg:gap-4 mt-2">
+                    {activeProject.codeUrl && (
+                      <Link
+                        href={activeProject.codeUrl}
+                        target="_blank" // Opens in new tab
+                        rel="noopener noreferrer" // Security best practice
+                        className="inline-flex items-center gap-2 lg:gap-3 px-4 lg:px-5 py-2 lg:py-3 text-[10px] lg:text-xs xl:text-sm font-press-start bg-black text-white border-2 border-white hover:translate-y-[-2px] active:translate-y-[0px] transition-transform shadow-lg"
+                      >
+                        {/* GitHub Icon SVG */}
+                        <svg className="w-4 h-4 lg:w-5 lg:h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                        <span>CODE</span>
+                      </Link>
+                    )}
+                    {activeProject.demoUrl && (
+                      <Link
+                        href={activeProject.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 lg:gap-3 px-4 lg:px-5 py-2 lg:py-3 text-[10px] lg:text-xs xl:text-sm font-press-start bg-pink-200 text-black border-2 border-black hover:translate-y-[-2px] active:translate-y-[0px] transition-transform shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                      >
+                        {/* External Link Icon SVG */}
+                        <svg className="w-4 h-4 lg:w-5 lg:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                        <span>DEMO</span>
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
