@@ -82,6 +82,7 @@ const CubeNavbar: React.FC = () => {
         opacity: 1,
         transform: 'rotate(0deg)',
       }}
+      aria-expanded={isOpen}
       role="dialog"
       aria-label="Navigation menu"
     >
