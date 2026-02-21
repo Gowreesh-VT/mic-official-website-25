@@ -106,6 +106,7 @@ Cloud.displayName = 'Cloud';
 const MeetTheBoardPage: React.FC = () => {
   const [view, setView] = useState<'board' | 'departments'>('board');
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1440);
   const selectedTenure = '2025-2026';
 
   // Define cloud positions using hooks at the top level
@@ -134,7 +135,16 @@ const MeetTheBoardPage: React.FC = () => {
     setIsDarkMode(mediaQuery.matches);
     const handleChange = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
     mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
+
+    // Track window width for responsive grid
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    setWindowWidth(window.innerWidth);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   useEffect(() => {
@@ -222,9 +232,17 @@ const MeetTheBoardPage: React.FC = () => {
   // Filter leads data by selected tenure
   const filteredLeadsData = leadsData.filter(lead => lead.tenure === selectedTenure);
 
+  // Responsive cards per row & scale
+  const cardsPerRow = windowWidth < 640 ? 1 : windowWidth < 1100 ? 2 : 4;
+  // Scale the row so 4 cards always fit; minimum scale 0.5
+  const CARD_W = 327;
+  const CARD_GAP = 32; // space-x-8 = 2rem = 32px
+  const rowTotalW = cardsPerRow * CARD_W + (cardsPerRow - 1) * CARD_GAP;
+  const availableW = windowWidth - 32; // subtract page padding
+  const rowScale = rowTotalW > availableW ? Math.max(0.5, availableW / rowTotalW) : 1;
+
   // Prepare rows for departments view
-  const rows = [];
-  const cardsPerRow = 4;
+  const rows: typeof filteredLeadsData[] = [];
   for (let i = 0; i < filteredLeadsData.length; i += cardsPerRow) {
     rows.push(filteredLeadsData.slice(i, i + cardsPerRow));
   }
@@ -333,7 +351,7 @@ const MeetTheBoardPage: React.FC = () => {
 
           {/* Board View */}
           {view === 'board' && (
-            <div className="flex flex-col items-center space-y-8 relative z-10">
+            <div className="flex flex-col items-center space-y-8 relative z-10" style={{ transform: windowWidth < 900 ? `scale(${Math.max(0.55, (windowWidth - 32) / 900)})` : 'none', transformOrigin: 'top center' }}>
               <div className="flex justify-center space-x-8">
                 <PresidentCard name="NAME" />
                 <VicePresidentCard name="NAME" />
@@ -351,7 +369,7 @@ const MeetTheBoardPage: React.FC = () => {
             <div className="flex flex-col items-center space-y-8 relative z-10 w-full">
               {/* Team Members Grid */}
               {rows.map((rowData, rowIndex) => (
-                <div key={rowIndex} className="flex justify-center space-x-8">
+                <div key={rowIndex} className="flex justify-center space-x-8" style={{ transform: `scale(${rowScale})`, transformOrigin: 'top center', marginBottom: `${(rowScale - 1) * 279}px` }}>
                   {rowData.map((data, index) => {
                     const CardComponent = cardOrder[index % cardOrder.length];
                     return (

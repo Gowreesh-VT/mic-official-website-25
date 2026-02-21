@@ -4,70 +4,70 @@ import React, { useState, useEffect } from "react";
 
 const events = [
 	{
-		title: "Cyber Security Treasure Hunt",
-		desc: "The event emphasized critical thinking, time management, and cybersecurity fundamentals",
-		details: `The Microsoft Innovation Club hosted an exciting "Cyber Security Treasure Hunt," where participants engaged in clue-based challenges, quizzes, and problem-solving tasks. The event emphasized critical thinking, time management, and cybersecurity fundamentals. Teams followed a trail of hints to reach final answers, making for a fun and educational experience that concluded with the announcement of the winning teams.`,
-		bg: "bg-[#FFDFE8]",
-		border: "border-[#E8A2B5]",
-		text: "text-[#6d1c22]",
-		borderColor: "#E8A2B5",
-		startDate: new Date("2024-11-15"),
-		endDate: new Date("2024-11-15"),
+		title: "Only Founders",
+		desc: "A 48-hour startup sprint where teams of 6 build their first digital startup across five high-impact tech domains — competing across 15 colleges.",
+		details: "Only Founders was a multi-college 48-hour startup-building hackathon where teams of 6 were challenged to ideate, build, and pitch a functional digital product within a single sprint. Spanning five domains — FinTech & Digital Payments, AI Automation & Digital Media, Gaming & Entertainment Tech, Digital Health & Wellness Tech, and EdTech & Learning Automation — the event brought together participants from 15 colleges for one grand final at VIT Chennai. Teams had to go beyond pitching and actually build, making it a true test of technical execution, product thinking, and startup mindset.",
+		bg: "bg-[#FFF8E7]",
+		border: "border-[#F5C842]",
+		text: "text-[#5C3D00]",
+		borderColor: "#F5C842",
+		startDate: new Date("2026-02-05"),
+		endDate: new Date("2026-02-06"),
 	},
 	{
-		title: "Sherlock IT!",
-		desc: "Campus-wide puzzle hunt filled with engaging minigames and mystery-based challenges. ",
-		details: `Sherlock IT!, held during Pre-Vibrance by the Microsoft Innovations Club, was a campus-wide puzzle hunt filled with engaging minigames and mystery-based challenges. Participants solved interconnected clues that unraveled an overarching storyline. The event blended problem-solving with fun, encouraging teamwork and critical thinking while creating a memorable, interactive experience across the VIT Chennai campus.`,
-		bg: "bg-[#C5FFD8]",
-		border: "border-[#ABEEAB]",
-		text: "text-[#095709]",
-		borderColor: "#ABEEAB",
-		startDate: new Date("2024-10-20"),
-		endDate: new Date("2024-10-20"),
+		title: "HACKATHRONE",
+		desc: "A 24-hour hackathon challenging teams to engineer innovative solutions under time pressure.",
+		details: "HACKATHRONE was a high-intensity 24-hour hackathon that pushed participants to ideate, prototype, and deliver full-stack solutions within a strict time limit. Teams tackled real-world problem statements spanning domains like AI and ML, Web development, Cybersecurity or web3, and Innovation. The format demanded rapid iteration, technical depth, and collaborative engineering — rewarding those who could balance creativity with execution under pressure.",
+		bg: "bg-[#E8F0FF]",
+		border: "border-[#93B4FF]",
+		text: "text-[#0A1F6B]",
+		borderColor: "#93B4FF",
+		startDate: new Date("2025-10-29"),
+		endDate: new Date("2025-10-30"),
 	},
 	{
-		title: "VITopoly RUSH",
-		desc: "VITopoly Rush combined strategy, skill, and fun in a Monopoly-inspired competition.",
-		details: "Held on Day 1 of Vibrance 2025, VITopoly Rush combined strategy, skill, and fun in a Monopoly-inspired competition. Participants played campus-wide mini-games to earn in-game currency, which they later used in strategic Monopoly rounds. Points earned in these final rounds determined the winners. The event challenged resource management, decision-making, and competitive spirit in an exciting, two-phase format.",
-		bg: "bg-[#CBF1FD]",
-		border: "border-[#B3D9FF]",
-		text: "text-[#0A3A6b]",
-		borderColor: "#B3D9FF",
-		startDate: new Date("2025-03-01"),
-		endDate: new Date("2025-03-01"),
+		title: "DataSprint Hackathon",
+		desc: "A two-level 24-hour hackathon driven by innovation in Generative AI, HealthTech, and FinTech.",
+		details: "DataSprint was a two-level hackathon that challenged teams of 3–5 to build high-impact solutions across domains like Generative AI, HealthTech, and FinTech. Level 1 served as a qualifying round, with shortlisted teams advancing to the intense 24-hour Level 2 finals. Participants worked through overnight assessments, domain-focused challenges, and rigorous evaluation rounds judged on innovation, technical execution, feasibility, impact, and presentation quality — with a prize pool of INR 50,000 at stake.",
+		bg: "bg-[#E8FFE8]",
+		border: "border-[#7AE89A]",
+		text: "text-[#064D1E]",
+		borderColor: "#7AE89A",
+		startDate: new Date("2025-09-04"),
+		endDate: new Date("2025-09-05"),
 	},
 	{
-		title: "How Hackers Really Hack 4.0",
-		desc: "This two-day event featured ethical hacking expert Sriram Kesavan, who shared real-world cybersecurity practices.",
-		details: "This two-day event featured ethical hacking expert Sriram Kesavan, who shared real-world cybersecurity practices. Day one included hands-on sessions on vulnerabilities and cyber defense, while day two hosted a thrilling 6-hour CTF contest. Participants applied their learning in competitive challenges, making it a comprehensive experience in practical cybersecurity.",
-		bg: "bg-[#CBF1FD]",
-		border: "border-[#B3D9FF]",
-		text: "text-[#0A3A6b]",
-		borderColor: "#B3D9FF",
-		startDate: new Date("2025-02-15"),
-		endDate: new Date("2025-02-16"),
+		title: "REMICS",
+		desc: "MIC's 5-year celebration and orientation event — revealing big initiatives, sharing the club's vision, and opening doors for the next generation of innovators.",
+		details: "REMICS marked five years of the Microsoft Innovation Club at VIT Chennai — an orientation and celebration event that brought students face-to-face with the club's vision, roadmap, and community. Club leads took the stage to share future visions and what's next, followed by recruitment insights guiding students toward joining M.I.C. The event featured fun & interactive segments for students to connect, express, and play, alongside major big reveals that had been months in the making. MIC unveiled its official website, walkthrough of its structured project cycle, and opportunities like the Microsoft Learn Student Ambassador Program.",
+		bg: "bg-[#F3EEFF]",
+		border: "border-[#C084FC]",
+		text: "text-[#3B0764]",
+		borderColor: "#C084FC",
+		startDate: new Date("2025-09-08"),
+		endDate: new Date("2025-09-08"),
 	},
 	{
-		title: "Season of AI: India",
-		desc: "This session explored India's booming AI landscape and Microsoft's influence in it.",
-		details: "Led by Gold MLSA Deepthi Balasubramanian, this session explored India's booming AI landscape and Microsoft's influence in it. Attendees learned about responsible AI, Generative AI applications, and tools like Microsoft Copilot and Azure AI Studio. Live demos gave hands-on exposure to Models-as-a-Service and AI integration, empowering students to explore and build innovative, responsible AI solutions.",
-		bg: "bg-[#fff4dd]",
-		border: "border-[#FFD782]",
-		text: "text-[#865B00]",
-		borderColor: "#FFD782",
-		startDate: new Date("2025-01-10"),
-		endDate: new Date("2025-01-10"),
+		title: "HEATCODE",
+		desc: "A full-day competitive programming challenge where teams battle through two gruelling rounds to claim the top spot.",
+		details: "HEATCODE was a high-stakes competitive programming contest built for teams of 2–4 that ran across two back-to-back elimination rounds. Participants tackled a gauntlet of algorithmic problems spanning greedy strategies, dynamic programming, graph theory, and number theory — under a strict time limit with an attractive prize pool on the line. The dual-round format separated the sharp from the elite, demanding both raw coding speed and sharp problem-solving strategy.",
+		bg: "bg-[#FFE8E8]",
+		border: "border-[#FF9494]",
+		text: "text-[#6B0000]",
+		borderColor: "#FF9494",
+		startDate: new Date("2026-01-09"),
+		endDate: new Date("2026-01-09"),
 	},
 	{
-		title: "MLSA Explained",
-		desc: "This workshop provided a complete overview of the Microsoft Learn Student Ambassadors (MLSA) program.",
-		details: "This workshop provided a complete overview of the Microsoft Learn Student Ambassadors (MLSA) program. Speakers Sam Prince and Syed Omar shared insights into the program's mission, benefits like Azure credits and LinkedIn Premium, and the application process. Attendees left motivated and informed about how to grow as student tech leaders through MLSA.",
-		bg: "bg-[#ffdfe8]",
-		border: "border-[#E8A2B5]",
-		text: "text-[#6d1c22]",
-		borderColor: "#E8A2B5",
-		startDate: new Date("2024-12-05"),
-		endDate: new Date("2024-12-05"),
+		title: "CODE CITADEL",
+		desc: "A 4-round web development gauntlet — from HTML fundamentals to live deployment — where every round brought participants closer to conquering the web.",
+		details: "CODE CITADEL was a progressive 4-round web development competition that took participants from the ground up. Round 1 (HTML Conquest) tested markup fundamentals with a quiz and static webpage build. Round 2 (CSS Clash) challenged teams to pixel-perfectly style an HTML page using only CSS. Round 3 (JavaScript + Git Gauntlet) combined a JS logic quiz, rapid-fire questions, and a Git branching challenge. Round 4 (The Final Siege) was the ultimate test — clone a real-world website like Spotify or GitHub using React.js or Next.js and deploy it live online.",
+		bg: "bg-[#FFF0E8]",
+		border: "border-[#FFBB94]",
+		text: "text-[#6B2500]",
+		borderColor: "#FFBB94",
+		startDate: new Date("2025-10-27"),
+		endDate: new Date("2025-10-27"),
 	},
 ];
 
@@ -153,7 +153,8 @@ const CalendarIcon: React.FC<{ style?: React.CSSProperties }> = ({ style }) => (
 const LandingPage = () => {
 	const [openCard, setOpenCard] = useState<number | null>(null);
 	const [isDarkMode, setIsDarkMode] = useState(false);
-	const sortedEvents = sortEventsByDate(events);
+	// Events displayed in the exact order defined in the array above
+	const sortedEvents = events;
 
 	// Detect system theme preference
 	useEffect(() => {
@@ -356,6 +357,7 @@ const LandingPage = () => {
 				paddingBottom: "1.5rem",
 			}}
 		>
+			<div className="events-decorative hidden md:block">
 			{/* Dynamic Lines - Responsive to screen size */}
 			<Line
 				left="3.6vw"
@@ -526,6 +528,7 @@ const LandingPage = () => {
 				color={themeColors.lineColor}
 			/>
 
+			</div>
 			{/* Ghost decorations */}
 			<img
 				src="/greenghost.png"
@@ -613,7 +616,7 @@ const LandingPage = () => {
 			>
 				{/* First Row - 3 cards */}
 				<div
-					className="grid"
+					className="grid events-grid"
 					style={{
 						gridTemplateColumns: "repeat(3, 1fr)",
 						gap: "min(2.5vw, 48px)",
@@ -643,7 +646,7 @@ const LandingPage = () => {
 						>
 							<span
 								style={{
-									fontSize: "min(1.3vw, 20px)",
+									fontSize: "clamp(11px, 1.3vw, 20px)",
 									marginBottom: "min(0.8vh, 12px)",
 									overflow: "hidden",
 									display: "-webkit-box",
@@ -658,7 +661,7 @@ const LandingPage = () => {
 								className="info-text font-normal"
 								style={{
 									fontFamily: "'IBM Plex Mono', monospace",
-									fontSize: "min(0.9vw, 14px)",
+									fontSize: "clamp(10px, 0.9vw, 14px)",
 									marginBottom: "min(0.8vh, 12px)",
 									display: "flex",
 									alignItems: "center",
@@ -672,7 +675,7 @@ const LandingPage = () => {
 								className="info-text font-normal"
 								style={{
 									fontFamily: "'IBM Plex Mono', monospace",
-									fontSize: "min(0.9vw, 14px)",
+									fontSize: "clamp(10px, 0.9vw, 14px)",
 									overflow: "hidden",
 									display: "-webkit-box",
 									WebkitLineClamp: 3,
@@ -732,7 +735,7 @@ const LandingPage = () => {
 
 				{/* Second Row - 3 cards */}
 				<div
-					className="grid"
+					className="grid events-grid"
 					style={{
 						gridTemplateColumns: "repeat(3, 1fr)",
 						gap: "min(2.5vw, 48px)",
@@ -762,7 +765,7 @@ const LandingPage = () => {
 						>
 							<span
 								style={{
-									fontSize: "min(1.3vw, 20px)",
+									fontSize: "clamp(11px, 1.3vw, 20px)",
 									marginBottom: "min(0.8vh, 12px)",
 									overflow: "hidden",
 									display: "-webkit-box",
@@ -777,7 +780,7 @@ const LandingPage = () => {
 								className="info-text font-normal"
 								style={{
 									fontFamily: "'IBM Plex Mono', monospace",
-									fontSize: "min(0.9vw, 14px)",
+									fontSize: "clamp(10px, 0.9vw, 14px)",
 									marginBottom: "min(0.8vh, 12px)",
 									display: "flex",
 									alignItems: "center",
@@ -791,7 +794,7 @@ const LandingPage = () => {
 								className="info-text font-normal"
 								style={{
 									fontFamily: "'IBM Plex Mono', monospace",
-									fontSize: "min(0.9vw, 14px)",
+									fontSize: "clamp(10px, 0.9vw, 14px)",
 									overflow: "hidden",
 									display: "-webkit-box",
 									WebkitLineClamp: 3,
@@ -808,7 +811,7 @@ const LandingPage = () => {
 
 			{/* Vertical Dots Right */}
 			<div
-				className="absolute flex flex-col z-50"
+				className="absolute flex-col z-50 hidden md:flex"
 				style={{
 					top: "34vh",
 					right: "5.2vw",
@@ -829,7 +832,7 @@ const LandingPage = () => {
 
 			{/* Vertical Dots Left */}
 			<div
-				className="absolute flex flex-col z-50"
+				className="absolute flex-col z-50 hidden md:flex"
 				style={{
 					top: "48vh",
 					left: "5.2vw",
@@ -852,7 +855,7 @@ const LandingPage = () => {
 			<img
 				src="/yellowghost.png"
 				alt="Top Left Ghost"
-				className="absolute top-20 left-20 z-50 animate-bounce"
+				className="absolute top-20 left-20 z-50 animate-bounce hidden md:block"
 				style={{
 					width: "min(2.1vw, 32px)",
 					height: "min(2.1vw, 32px)",
@@ -861,7 +864,7 @@ const LandingPage = () => {
 			<img
 				src="/redghost.png.png"
 				alt="Top Right Ghost"
-				className="absolute top-20 right-20 z-50 animate-bounce"
+				className="absolute top-20 right-20 z-50 animate-bounce hidden md:block"
 				style={{
 					width: "min(2.1vw, 32px)",
 					height: "min(2.1vw, 32px)",
@@ -870,7 +873,7 @@ const LandingPage = () => {
 			<img
 				src="/blueghost.png"
 				alt="Bottom Left Ghost"
-				className="absolute bottom-24 left-20 z-50 animate-bounce"
+				className="absolute bottom-24 left-20 z-50 animate-bounce hidden md:block"
 				style={{
 					width: "min(2.1vw, 32px)",
 					height: "min(2.1vw, 32px)",
@@ -879,7 +882,7 @@ const LandingPage = () => {
 			<img
 				src="/pinkghost (1).png"
 				alt="Bottom Right Ghost"
-				className="absolute bottom-20 right-20 z-50 animate-bounce"
+				className="absolute bottom-20 right-20 z-50 animate-bounce hidden md:block"
 				style={{
 					width: "min(2.1vw, 32px)",
 					height: "min(2.1vw, 32px)",
@@ -916,6 +919,64 @@ const LandingPage = () => {
 				}}
 			></div>
 
+			{/* Responsive Styles */}
+			<style>{`
+				/* Mobile: single-column cards */
+				@media (max-width: 640px) {
+					.events-grid {
+						grid-template-columns: 1fr !important;
+						max-width: 92vw !important;
+						width: 92vw !important;
+						gap: 16px !important;
+					}
+					.events-card {
+						width: 100% !important;
+						height: auto !important;
+						min-height: 120px !important;
+						padding: 16px !important;
+						border-width: 6px !important;
+					}
+					.info-text { font-size: 11px !important; }
+					.pellets-row { display: none; }
+				}
+				/* Tablet: 2-column */
+				@media (min-width: 641px) and (max-width: 1024px) {
+					.events-grid {
+						grid-template-columns: repeat(2, 1fr) !important;
+						max-width: 92vw !important;
+						width: 92vw !important;
+						gap: min(2vw, 24px) !important;
+					}
+					.events-card {
+						width: 100% !important;
+						height: auto !important;
+						min-height: 160px !important;
+						padding: 20px !important;
+					}
+					.info-text { font-size: 12px !important; }
+				}
+				/* Smooth card hover only on desktop */
+				@media (max-width: 1024px) {
+					.pellets-row { width: 100% !important; }
+				}
+				.pellets-row {
+					overflow: hidden;
+					width: 100%;
+					position: relative;
+					display: flex;
+					align-items: center;
+				}
+				.pellets-inner {
+					display: flex;
+					gap: 12px;
+					padding-left: 56px;
+					animation: pellet-scroll 8s linear infinite;
+				}
+				@keyframes pellet-scroll {
+					0% { transform: translateX(0); }
+					100% { transform: translateX(-50%); }
+				}
+			`}</style>
 			{/* Modal Overlay */}
 			{renderOverlay()}
 		</div>

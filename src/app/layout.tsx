@@ -1,14 +1,20 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Press_Start_2P } from "next/font/google";
 import "./globals.css";
 import ConditionalNavbar from "@/components/ConditionalNavbar";
-import RedirectWrapper from "@/components/RedirectWrapper"; 
+import RedirectWrapper from "@/components/RedirectWrapper";
 
 const pressStart2P = Press_Start_2P({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-press-start-2p",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
 
 export const metadata: Metadata = {
   title: "Microsoft Innovation Club | VIT Chennai - Official Website",
@@ -37,7 +43,7 @@ export const metadata: Metadata = {
       follow: true,
       "max-snippet": -1,
       "max-image-preview": "large",
-      "max-video-preview": -1,    
+      "max-video-preview": -1,
     },
   },
   openGraph: {

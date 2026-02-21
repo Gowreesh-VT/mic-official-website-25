@@ -9,7 +9,7 @@ const ClubLogo = () => (
     style={{
       position: 'absolute',
       left: '50%',
-      top: 80,
+      top: 'clamp(60px, 8vh, 80px)',
       transform: 'translateX(-50%)',
       zIndex: 12,
     }}
@@ -30,7 +30,7 @@ const Cube = () => (
     style={{
       position: 'absolute',
       left: '50%',
-      top: 240,
+      top: 'clamp(160px, 22vh, 240px)',
       transform: 'translateX(-50%)',
       zIndex: 11,
     }}
@@ -199,51 +199,21 @@ const LandingPage = () => {
     }}>
       <div className="w-full min-h-screen flex flex-col mt-5 relative overflow-hidden">
 
-        <a
-          href="https://www.instagram.com/microsoft.innovations.vitc/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute top-1 right-52 z-50"
-        >
-          <Image className="Animated-Logo"
-            src="/insta.svg"
-            alt="Instagram Logo"
-            width={72}
-            height={78}
-            style={{ width: "90vw", maxWidth: 72, height: "auto", display: "block" }}
-            priority
-          />
-        </a>
-        <a
-          href="https://www.linkedin.com/company/microsoft-innovations-club-vitc/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute top-1 right-28 z-50"
-        >
-          <Image className="Animated-Logo"
-            src="/linkedin.svg"
-            alt="LinkedIn Logo"
-            width={72}
-            height={78}
-            style={{ width: "90vw", maxWidth: 72, height: "auto", display: "block" }}
-            priority
-          />
-        </a>
-        <a
-          href="mailto:mic.vit.chennai@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute top-1 right-5 z-50"
-        >
-          <Image className="Animated-Logo"
-            src="/mail.svg"
-            alt="Mail Logo"
-            width={72}
-            height={78}
-            style={{ width: "90vw", maxWidth: 72, height: "auto", display: "block" }}
-            priority
-          />
-        </a>
+        {/* Social icons – responsive flex group, no overlap */}
+        <div className="absolute top-2 right-3 z-50 flex items-center gap-1 sm:gap-2">
+          <a href="https://www.instagram.com/microsoft.innovations.vitc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <Image className="Animated-Logo" src="/insta.svg" alt="Instagram Logo" width={72} height={78}
+              style={{ width: "clamp(36px, 5vw, 64px)", height: "auto", display: "block" }} priority />
+          </a>
+          <a href="https://www.linkedin.com/company/microsoft-innovations-club-vitc/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <Image className="Animated-Logo" src="/linkedin.svg" alt="LinkedIn Logo" width={72} height={78}
+              style={{ width: "clamp(36px, 5vw, 64px)", height: "auto", display: "block" }} priority />
+          </a>
+          <a href="mailto:mic.vit.chennai@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email">
+            <Image className="Animated-Logo" src="/mail.svg" alt="Mail Logo" width={72} height={78}
+              style={{ width: "clamp(36px, 5vw, 64px)", height: "auto", display: "block" }} priority />
+          </a>
+        </div>
         {/* Trophy Icon - Static bottom-left position */}
         {!showLeaderboardWidget && (
           <button

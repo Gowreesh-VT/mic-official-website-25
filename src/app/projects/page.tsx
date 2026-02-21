@@ -28,7 +28,7 @@ interface ThemeColors {
 interface Project {
   id: number;
   title: string;
-  status: 'Completed' | 'In Progress';
+  status: 'Completed' | 'In Progress' | 'Pending';
   description: string;
   techStack: string[];
   codeUrl?: string;
@@ -95,58 +95,35 @@ Cloud.displayName = 'Cloud';
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Project Name',
-    status: 'Completed',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    techStack: ['python', 'tensorflow', 'react'],
-    codeUrl: '#',
-    demoUrl: '#',
+    title: 'AI Academic Assistant',
+    status: 'Pending',
+    description: 'AI Academic Assistant is a personalized exam-preparation platform that transforms a student\'s syllabus, notes, and past papers into a clear study strategy. It predicts topic weightage, highlights high-risk areas, explains concepts in exam-writing format, solves numericals step-by-step, and simulates mock tests, labs, and viva — helping students know what to study, how to write, and how to revise.',
+    techStack: ['Python', 'FastAPI', 'OpenAI', 'Next.js', 'TypeScript', 'Supabase', 'Docker', 'Tailwind CSS'],
+    codeUrl: 'https://github.com/micvitc/acad-assistant',
+    demoUrl: 'https://drive.google.com/file/d/1p9uNLFISlp8mbNnNjeEWquToglu_Vn-A/view?usp=sharing',
     cardImage: '/images/imageno1.png',
-    previewImage: '/images/previews/preview1.png',
+    previewImage: '/images/preview_ai_academic.jpg',
   },
   {
     id: 2,
-    title: '2 Project',
-    status: 'Completed',
-    description: 'Another project description goes here. Responsive layouts require flexbox wizardry.',
-    techStack: ['next.js', 'tailwind', 'typescript'],
-    codeUrl: '#',
-    demoUrl: '#',
+    title: 'Autonomous Vision Warehouse Rover',
+    status: 'Pending',
+    description: 'Vision-Based Autonomous Warehouse Robot is a low-cost, physical AI platform that transforms raw camera feeds, depth sensor readings, and target coordinates into intelligent indoor navigation. It detects dynamic obstacles using Tiny-YOLO, fuses multi-sensor data, and executes real-time pathfinding using a pre-trained Reinforcement Learning agent fully on-board.',
+    techStack: ['Python', 'C++', 'PyTorch', 'Tiny-YOLO', 'OpenCV', 'ROS 2', 'Raspberry Pi', 'ESP32-CAM'],
+    codeUrl: 'https://github.com/Vision-based-Rover/Autonomous-Rover',
     cardImage: '/images/imageno2.png',
-    previewImage: '/images/previews/preview2.png',
+    previewImage: '/images/imageno2.png',
   },
   {
     id: 3,
-    title: '3 Project',
-    status: 'Completed',
-    description: 'Short line about what this project does and why it is cool.',
-    techStack: ['flutter', 'firebase'],
-    codeUrl: '#',
-    demoUrl: '#',
+    title: 'TASA CodeCraft',
+    status: 'Pending',
+    description: 'TASA CodeCraft is built to guide students step by step toward their dream job. Instead of random preparation, it provides a clear path covering DSA, System Design, Aptitude, and Core CS along with company-specific practice and daily challenges. A smart dashboard tracks strengths, weaknesses, and progress — turning placement prep into a focused, goal-driven journey.',
+    techStack: ['Java', 'Spring Boot', 'React', 'MySQL', 'Redis', 'Docker', 'JWT'],
+    codeUrl: 'https://github.com/TASA-Code-Craft/frontend',
+    demoUrl: 'https://drive.google.com/file/d/1G1erMBSeZ0qpF-bgSSPyXWx0wLnjMlpq/view?usp=sharing',
     cardImage: '/images/imageno3.png',
-    previewImage: '/images/previews/preview3.png',
-  },
-  {
-    id: 4,
-    title: '4 Project',
-    status: 'Completed',
-    description: 'Describe the problem this project solves in one or two sentences.',
-    techStack: ['node', 'express', 'mongodb'],
-    codeUrl: '#',
-    demoUrl: '#',
-    cardImage: '/images/imageno4.png',
-    previewImage: '/images/previews/preview4.png',
-  },
-  {
-    id: 5,
-    title: '5 Project',
-    status: 'Completed',
-    description: 'Teaser description for the upcoming project in our club.',
-    techStack: ['rust', 'wasm'],
-    codeUrl: '#',
-    demoUrl: '#',
-    cardImage: '/images/imageno5.png',
-    previewImage: '/images/previews/preview5.png',
+    previewImage: '/images/preview_tasa_codecraft.jpg',
   },
 ];
 
@@ -154,6 +131,7 @@ const ProjectsPage: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -182,8 +160,9 @@ const ProjectsPage: React.FC = () => {
 
   return (
     <div
-      className="h-screen w-screen relative overflow-hidden flex flex-row"
+      className="w-screen relative overflow-hidden flex flex-col"
       style={{
+        height: '100dvh',
         backgroundImage: `
           linear-gradient(to right, ${themeColors.gridOpacity} 1px, transparent 1px),
           linear-gradient(to bottom, ${themeColors.gridOpacity} 1px, transparent 1px),
@@ -200,112 +179,146 @@ const ProjectsPage: React.FC = () => {
         </div>
       ) : (
         <>
+          {/* Clouds */}
           <div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
             {cloudConfig.map((config, index) => (
               <Cloud key={index} config={config} />
             ))}
           </div>
 
-          {/* Header - positioned across full screen width for true centering */}
-          <div className="absolute top-0 left-0 w-full px-6 py-4 lg:pt-8 lg:pb-2 z-30 pointer-events-none">
-            <h1 className={`${themeColors.textColor} font-press-start z-10 text-center`}
-              style={{ fontSize: "clamp(1rem, 4.5vw, 3rem)" }}>
+          {/* ── Header ── */}
+          <div className="w-full px-6 pt-5 pb-3 z-30 pointer-events-none text-center flex-shrink-0">
+            <h1
+              className={`${themeColors.textColor} font-press-start`}
+              style={{ fontSize: 'clamp(1.2rem, 4vw, 3rem)' }}
+            >
               Projects
             </h1>
           </div>
 
-          {/* LEFT SIDE: Content Container */}
-          <div className="flex-1 h-full flex flex-col relative z-20 min-w-0 pt-20 lg:pt-24">
+          {/* ── Body row: content | sidebar right ── */}
+          <div className="flex-1 min-h-0 flex flex-row z-20" style={{ paddingLeft: 'clamp(8px, 2vw, 24px)', paddingBottom: 'clamp(8px, 2vh, 24px)' }}>
 
-            {/* Content Box */}
-            {/* FIX: Reduced padding lg:pl-8. Reduced gap between image and text */}
-            <div className="flex-1 flex items-center justify-center p-4 lg:pl-8 lg:pr-4 xl:pl-56 xl:pr-12 relative transition-all duration-300">
-              <div className="relative w-full max-w-5xl flex gap-6 lg:gap-8 xl:gap-12 items-center justify-center lg:justify-start">
-
-                {/* Borders */}
-                <div className="absolute -inset-8 pointer-events-none z-0 opacity-50 hidden lg:block">
+            {/* MAIN CONTENT: vertically centered */}
+            <div className="flex-1 min-w-0 flex items-center justify-center p-4 lg:px-8 xl:px-12">
+              <div
+                className="relative w-full max-w-4xl flex flex-col md:flex-row gap-6 lg:gap-10 items-center"
+                style={{ padding: 'clamp(16px, 3vw, 40px)', background: 'rgba(0,0,0,0.15)', borderRadius: 4 }}
+              >
+                {/* Corner borders */}
+                <div className="absolute -inset-2 pointer-events-none z-0 opacity-60 hidden lg:block">
                   <Image src={'/images/borders/tt.png'} alt='' width={32} height={32} className='absolute top-0 left-0' />
                   <Image src={'/images/borders/tr.png'} alt='' width={32} height={32} className='absolute top-0 right-0' />
                   <Image src={'/images/borders/bl.png'} alt='' width={32} height={32} className='absolute bottom-0 left-0' />
                   <Image src={'/images/borders/rb.png'} alt='' width={32} height={32} className='absolute bottom-0 right-0' />
                 </div>
 
-                {/* Project Image */}
-                {/* FIX: w-[280px] on laptop (lg), w-[460px] on monitor (xl). This prevents squishing. */}
-                <div className="relative z-10 hidden md:flex items-center justify-center w-[200px] lg:w-[280px] xl:w-[460px] flex-shrink-0 transition-all duration-300">
-                  <div className="relative w-full aspect-square bg-[#dde3eb] border-[6px] lg:border-[10px] border-black overflow-hidden shadow-xl">
+                {/* Project Preview Image — click to expand */}
+                <div
+                  className="relative z-10 hidden sm:flex items-center justify-center flex-shrink-0 transition-all duration-300 cursor-zoom-in group"
+                  style={{ width: 'clamp(200px, 28vw, 420px)', aspectRatio: '4/3' }}
+                  onClick={() => setLightboxOpen(true)}
+                  title="Click to expand"
+                >
+                  <div className="relative w-full h-full border-[6px] border-black overflow-hidden shadow-xl">
                     <Image
                       src={activeProject.previewImage}
                       alt={activeProject.title}
                       fill
-                      className="object-cover"
+                      className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
                       priority
                     />
-                    <div className="absolute inset-4 border-[4px] border-white/70 pointer-events-none" />
+                    {/* Expand hint overlay */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-200 flex items-center justify-center pointer-events-none">
+                      <svg className="w-10 h-10 text-white opacity-0 group-hover:opacity-90 transition-opacity duration-200 drop-shadow-lg" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
 
-                {/* Project Text Info */}
-                <div className="flex-1 flex flex-col justify-center gap-4 lg:gap-6 z-10 min-w-0">
-                  <div className="space-y-3 lg:space-y-4">
-                    <div className="flex flex-wrap items-center gap-3 lg:gap-4">
-                      {/* FIX: Text scales: text-xl (mobile) -> text-2xl (laptop) -> text-3xl (monitor) */}
-                      <h2 className="font-press-start text-white text-xl lg:text-2xl xl:text-3xl leading-tight">
-                        {activeProject.title}
-                      </h2>
-                      <span className="px-3 py-1 text-[10px] lg:text-xs font-press-start bg-pink-200 text-black border-2 border-black whitespace-nowrap">
-                        {activeProject.status}
-                      </span>
+                {/* Lightbox */}
+                {lightboxOpen && (
+                  <div
+                    className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80"
+                    style={{ backdropFilter: 'blur(4px)' }}
+                    onClick={() => setLightboxOpen(false)}
+                  >
+                    <div
+                      className="relative max-w-[90vw] max-h-[90vh] shadow-2xl border-4 border-white/30"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Image
+                        src={activeProject.previewImage}
+                        alt={activeProject.title}
+                        width={1280}
+                        height={800}
+                        className="object-contain max-h-[88vh] w-auto"
+                        style={{ display: 'block' }}
+                        priority
+                      />
+                      <button
+                        onClick={() => setLightboxOpen(false)}
+                        className="absolute top-3 right-3 w-9 h-9 bg-black/70 text-white rounded-full flex items-center justify-center text-lg font-bold hover:bg-red-500 transition-colors"
+                        aria-label="Close"
+                      >
+                        ✕
+                      </button>
                     </div>
+                  </div>
+                )}
 
-                    {/* FIX: Text scales: text-xs (laptop) -> text-lg (monitor). This ensures it fits. */}
-                    <p className="text-sm lg:text-sm xl:text-lg leading-relaxed text-slate-100 max-w-2xl font-mono">
-                      {activeProject.description}
+                {/* Text Info */}
+                <div className="flex-1 flex flex-col justify-center gap-4 lg:gap-5 z-10 min-w-0">
+                  {/* Title + Status */}
+                  <div>
+                    <h2 className="font-press-start text-white leading-tight mb-3"
+                      style={{ fontSize: 'clamp(14px, 2vw, 28px)' }}>
+                      {activeProject.title}
+                    </h2>
+                    <span className="px-3 py-1 text-[10px] font-press-start bg-pink-200 text-black border-2 border-black whitespace-nowrap">
+                      {activeProject.status}
+                    </span>
+                  </div>
+
+                  {/* Description */}
+                  <p className="leading-relaxed text-slate-100 font-mono"
+                    style={{ fontSize: 'clamp(11px, 1.1vw, 15px)' }}>
+                    {activeProject.description}
+                  </p>
+
+                  {/* Tech Stack */}
+                  <div>
+                    <p className="font-press-start tracking-wide text-white mb-2"
+                      style={{ fontSize: 'clamp(9px, 0.9vw, 12px)' }}>
+                      Tech Stack:
                     </p>
-
-                    <div className="space-y-2 lg:space-y-3">
-                      <p className="font-press-start text-[10px] lg:text-xs tracking-wide text-white">
-                        Tech Stack:
-                      </p>
-                      <div className="flex flex-wrap gap-2 lg:gap-3">
-                        {activeProject.techStack.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-3 py-1 text-[10px] lg:text-xs font-mono bg-black text-white border border-white/40 uppercase"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
+                    <div className="flex flex-wrap gap-2">
+                      {activeProject.techStack.map((tech) => (
+                        <span key={tech}
+                          className="px-2 py-1 font-mono bg-black text-white border border-white/40 uppercase"
+                          style={{ fontSize: 'clamp(9px, 0.85vw, 12px)' }}>
+                          {tech}
+                        </span>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-3 lg:gap-4 mt-2">
+                  {/* CTA Buttons */}
+                  <div className="flex flex-wrap gap-3 mt-1">
                     {activeProject.codeUrl && (
-                      <Link
-                        href={activeProject.codeUrl}
-                        target="_blank" // Opens in new tab
-                        rel="noopener noreferrer" // Security best practice
-                        className="inline-flex items-center gap-2 lg:gap-3 px-4 lg:px-5 py-2 lg:py-3 text-[10px] lg:text-xs xl:text-sm font-press-start bg-black text-white border-2 border-white hover:translate-y-[-2px] active:translate-y-[0px] transition-transform shadow-lg"
-                      >
-                        {/* GitHub Icon SVG */}
-                        <svg className="w-4 h-4 lg:w-5 lg:h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                        </svg>
+                      <Link href={activeProject.codeUrl} target="_blank" rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 font-press-start bg-black text-white border-2 border-white hover:translate-y-[-2px] active:translate-y-[0px] transition-transform shadow-lg"
+                        style={{ fontSize: 'clamp(9px, 0.9vw, 12px)' }}>
+                        <svg className="w-4 h-4 fill-current flex-shrink-0" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
                         <span>CODE</span>
                       </Link>
                     )}
                     {activeProject.demoUrl && (
-                      <Link
-                        href={activeProject.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 lg:gap-3 px-4 lg:px-5 py-2 lg:py-3 text-[10px] lg:text-xs xl:text-sm font-press-start bg-pink-200 text-black border-2 border-black hover:translate-y-[-2px] active:translate-y-[0px] transition-transform shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-                      >
-                        {/* External Link Icon SVG */}
-                        <svg className="w-4 h-4 lg:w-5 lg:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                        </svg>
+                      <Link href={activeProject.demoUrl} target="_blank" rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 font-press-start bg-pink-200 text-black border-2 border-black hover:translate-y-[-2px] active:translate-y-[0px] transition-transform shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                        style={{ fontSize: 'clamp(9px, 0.9vw, 12px)' }}>
+                        <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                         <span>DEMO</span>
                       </Link>
                     )}
@@ -313,33 +326,32 @@ const ProjectsPage: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* RIGHT SIDE: Navigation Sidebar */}
-          {/* FIX: Width scales: w-[200px] (mobile) -> w-[260px] (laptop) -> w-[350px] (monitor) */}
-          <div className="h-full w-[200px] lg:w-[260px] xl:w-[350px] flex-shrink-0 z-20 flex flex-col pointer-events-none">
-            {projects.map((project, index) => (
-              <button
-                key={project.id}
-                onClick={() => setActiveIndex(index)}
-                className={`
-                  relative flex-1 w-full group outline-none
-                  transition-transform duration-300 ease-out
-                  ${activeIndex === index ? 'translate-x-[-20px]' : 'translate-x-[0px] hover:translate-x-[-10px]'}
-                `}
-              >
-                <div className="absolute inset-0 w-[85%] ml-auto h-full pointer-events-auto">
-                  <Image
-                    src={project.cardImage}
-                    alt={`Select ${project.title}`}
-                    fill
-                    className="object-contain object-right"
-                    sizes="(max-width: 1200px) 260px, 350px"
-                    priority
-                  />
-                </div>
-              </button>
-            ))}
+            {/* RIGHT SIDEBAR: project selector cards — no right padding, flush to edge */}
+            <div
+              className="flex-shrink-0 z-20 flex flex-col"
+              style={{ width: 'clamp(155px, 19vw, 320px)', pointerEvents: 'none' }}
+            >
+              {projects.map((project, index) => (
+                <button
+                  key={project.id}
+                  onClick={() => setActiveIndex(index)}
+                  style={{ pointerEvents: 'auto' }}
+                  className={`relative flex-1 w-full group outline-none transition-transform duration-300 ease-out ${activeIndex === index ? 'translate-x-[-12px]' : 'translate-x-[0px] hover:translate-x-[-8px]'}`}
+                >
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={project.cardImage}
+                      alt={`Select ${project.title}`}
+                      fill
+                      className="object-contain object-right"
+                      sizes="240px"
+                      priority
+                    />
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
         </>
       )}
