@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 // --- Cloud Animation Hook (copied from meetttheboardpage/page.tsx) ---
 interface CloudFloatOptions {
@@ -28,14 +29,7 @@ function useCloudFloat({ baseTop, baseLeft, amplitude = 30, speed = 1, phase = 0
   return { top, left: baseLeft };
 }
 
-const menuButtonSvg = (
-  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="4" y="4" width="40" height="40" rx="4" fill="#0F3" stroke="#000" strokeWidth="4" />
-    <rect x="12" y="16" width="24" height="4" rx="2" fill="#222" />
-    <rect x="12" y="24" width="24" height="4" rx="2" fill="#222" />
-    <rect x="12" y="32" width="24" height="4" rx="2" fill="#222" />
-  </svg>
-);
+
 
 
 
@@ -56,9 +50,7 @@ const whiteDotsSvg = (
 const textPngUrl = "/images/you-died-404.png"; // Place your PNG text in public/images/you-died-404.png
 
 const NotFoundPage: React.FC = () => {
-
-
-  const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
   // Theme detection
   const [isDark, setIsDark] = useState(true);
   useEffect(() => {
@@ -143,27 +135,14 @@ const NotFoundPage: React.FC = () => {
             cursor: 'pointer'
           }}
           onClick={() => {
-            // TODO: Add navigation or logic for respawn button here
+            router.push("/main");
           }}
         >
           <Image src="/images/respawn-button.png" alt="RESPAWN TO HOME" width={340} height={70} />
         </button>
         {/* Cloud under and bottom right to RESPWAN button (animated) */}
         <Image src="/images/cloud3.png" alt="Cloud Bottom Right Respawn" width={204} height={125} style={{ position: 'absolute', ...useCloudFloat({ baseTop: 520, baseLeft: 950, amplitude: 20, speed: 1.15, phase: 8 }), zIndex: 2 }} />
-        {/* Green menu button */}
-        <button
-          style={{ position: 'absolute', right: 32, bottom: 32, zIndex: 20, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-          onClick={() => setMenuOpen((v) => !v)}
-          aria-label="Open menu"
-        >
-          {menuButtonSvg}
-        </button>
-        {/* Placeholder menu */}
-        {menuOpen && (
-          <div style={{ position: 'absolute', right: 90, bottom: 90, zIndex: 30, background: '#222', color: '#fff', padding: 24, borderRadius: 12, minWidth: 200, fontSize: 16 }}>
-            <div>Menu placeholder</div>
-          </div>
-        )}
+
       </div>
     </>
   );

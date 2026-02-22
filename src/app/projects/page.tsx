@@ -237,36 +237,7 @@ const ProjectsPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Lightbox */}
-                {lightboxOpen && (
-                  <div
-                    className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80"
-                    style={{ backdropFilter: 'blur(4px)' }}
-                    onClick={() => setLightboxOpen(false)}
-                  >
-                    <div
-                      className="relative max-w-[90vw] max-h-[90vh] shadow-2xl border-4 border-white/30"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Image
-                        src={activeProject.previewImage}
-                        alt={activeProject.title}
-                        width={1280}
-                        height={800}
-                        className="object-contain max-h-[88vh] w-auto"
-                        style={{ display: 'block' }}
-                        priority
-                      />
-                      <button
-                        onClick={() => setLightboxOpen(false)}
-                        className="absolute top-3 right-3 w-9 h-9 bg-black/70 text-white rounded-full flex items-center justify-center text-lg font-bold hover:bg-red-500 transition-colors"
-                        aria-label="Close"
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  </div>
-                )}
+
 
                 {/* Text Info */}
                 <div className="flex-1 flex flex-col justify-center gap-4 lg:gap-5 z-10 min-w-0">
@@ -353,6 +324,36 @@ const ProjectsPage: React.FC = () => {
               ))}
             </div>
           </div>
+          {/* Lightbox - Moved outside constrained containers for higher z-index stacking context */}
+          {lightboxOpen && (
+            <div
+              className="fixed inset-0 z-40 flex items-center justify-center bg-black/80"
+              style={{ backdropFilter: 'blur(4px)' }}
+              onClick={() => setLightboxOpen(false)}
+            >
+              <div
+                className="relative max-w-[90vw] max-h-[90vh] shadow-2xl border-4 border-white/30"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Image
+                  src={activeProject.previewImage}
+                  alt={activeProject.title}
+                  width={1280}
+                  height={800}
+                  className="object-contain max-h-[88vh] w-auto"
+                  style={{ display: 'block' }}
+                  priority
+                />
+                <button
+                  onClick={() => setLightboxOpen(false)}
+                  className="absolute top-3 right-3 w-9 h-9 bg-black/70 text-white rounded-full flex items-center justify-center text-lg font-bold hover:bg-red-500 transition-colors"
+                  aria-label="Close"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+          )}
         </>
       )}
     </div>

@@ -8,6 +8,8 @@ interface NavItem {
   color: string;
   id: string;
   href: string;
+  width: number;
+  height: number;
 }
 
 const CubeNavbar: React.FC = () => {
@@ -15,13 +17,13 @@ const CubeNavbar: React.FC = () => {
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   const navItems: NavItem[] = [
-    { name: 'Home', color: '#FF69B4', id: 'home', href: '/main' },
-    { name: 'About Us', color: '#90EE90', id: 'about', href: '/about-us' },
-    { name: 'Board', color: '#87CEEB', id: 'board', href: '/leads' },
-    { name: 'Gallery', color: '#DDA0DD', id: 'gallery', href: '/gallery' },
-    { name: 'Events', color: '#BDBEAC', id: 'events', href: '/events' },
-    { name: 'Projects', color: '#1CA6A6', id: 'projects', href: '/projects' },
-    { name: 'Leaderboard', color: '#F5DEB3', id: 'leaderboard', href: '/leaderboard' },
+    { name: 'Home', color: '#FF69B4', id: 'home', href: '/main', width: 35, height: 35 },
+    { name: 'About Us', color: '#90EE90', id: 'about', href: '/about-us', width: 30, height: 30 },
+    { name: 'Board', color: '#87CEEB', id: 'board', href: '/leads', width: 30, height: 30 },
+    { name: 'Gallery', color: '#DDA0DD', id: 'gallery', href: '/gallery', width: 30, height: 30 },
+    { name: 'Events', color: '#BDBEAC', id: 'events', href: '/events', width: 30, height: 30 },
+    { name: 'Projects', color: '#1CA6A6', id: 'projects', href: '/projects', width: 30, height: 30 },
+    { name: 'Leaderboard', color: '#F5DEB3', id: 'leaderboard', href: '/leaderboard', width: 30, height: 30 },
   ];
 
   // Close on outside click and on Escape
@@ -130,8 +132,8 @@ const CubeNavbar: React.FC = () => {
               <Image
                 src={`/cube/${item.id}.svg`}
                 alt={`${item.name} Cube`}
-                width={24}
-                height={24}
+                width={item.width}
+                height={item.height}
                 className="flex-shrink-0"
               />
               <span
