@@ -54,23 +54,23 @@ function useCloudFloat({
 function getThemeColors(isDarkMode: boolean) {
   return isDarkMode
     ? {
-        background: "linear-gradient(to bottom, #00040d 0%, #002855 100%)",
-        gridOpacity1: "rgba(255,255,255,0.09)",
-        gridOpacity2: "rgba(255,255,255,0.07)",
-        headingColor: "#fff",
-        headingTextShadow: "4px 4px 0 #000, 0 2px 8px #000",
-        starOpacity: 0.85,
-        cardTextColor: "#444",
-      }
+      background: "linear-gradient(to bottom, #00040d 0%, #002855 100%)",
+      gridOpacity1: "rgba(255,255,255,0.09)",
+      gridOpacity2: "rgba(255,255,255,0.07)",
+      headingColor: "#fff",
+      headingTextShadow: "4px 4px 0 #000, 0 2px 8px #000",
+      starOpacity: 0.85,
+      cardTextColor: "#444",
+    }
     : {
-        background: "linear-gradient(to bottom, #e0f2fe 0%, #87ceeb 100%)",
-        gridOpacity1: "rgba(255,255,255,0.3)",
-        gridOpacity2: "rgba(255,255,255,0.3)",
-        headingColor: "#1e293b",
-        headingTextShadow: "2px 2px 0 rgba(255,255,255,0.7), 0 1px 4px rgba(0,0,0,0.15)",
-        starOpacity: 0.4,
-        cardTextColor: "#333",
-      };
+      background: "linear-gradient(to bottom, #e0f2fe 0%, #87ceeb 100%)",
+      gridOpacity1: "rgba(255,255,255,0.3)",
+      gridOpacity2: "rgba(255,255,255,0.3)",
+      headingColor: "#1e293b",
+      headingTextShadow: "2px 2px 0 rgba(255,255,255,0.7), 0 1px 4px rgba(0,0,0,0.15)",
+      starOpacity: 0.4,
+      cardTextColor: "#333",
+    };
 }
 
 const MysteryCard = ({
@@ -88,7 +88,7 @@ const MysteryCard = ({
   title: string;
   desc: string;
   style?: React.CSSProperties;
-  cardTextColor?: string; 
+  cardTextColor?: string;
 }) => (
   <div
     className="mystery-card group"
@@ -399,15 +399,7 @@ const AboutUsPage: React.FC = () => {
     document.body.style.margin = "0";
     document.body.style.padding = "0";
     document.body.style.minHeight = "100vh";
-    document.body.style.overflowX = "hidden";
-    document.body.style.overflowY = "auto";
     document.documentElement.style.minHeight = "100vh";
-    document.documentElement.style.overflowX = "hidden";
-    document.documentElement.style.overflowY = "auto";
-    return () => {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-    };
   }, []);
 
   const lift = 80;

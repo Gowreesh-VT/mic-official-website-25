@@ -49,8 +49,10 @@ const CubeNavbar: React.FC = () => {
       <button
         aria-label="Open navigation"
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-8 right-4 z-[60] p-0 bg-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400"
+        className="fixed z-[60] p-0 bg-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400"
         style={{
+          bottom: 20,
+          right: 30,
           width: 40,
           height: 40,
           background: 'transparent',
@@ -73,8 +75,8 @@ const CubeNavbar: React.FC = () => {
       className="z-[60]"
       style={{
         position: 'fixed',
-        bottom: 16,
-        right: 12,
+        bottom: 20,
+        right: 30,
         width: 240,
         background: 'transparent',
         borderRadius: 0,

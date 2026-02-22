@@ -4,47 +4,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 
-const ClubLogo = () => (
-  <div
-    style={{
-      position: 'absolute',
-      left: '50%',
-      top: 'clamp(60px, 8vh, 80px)',
-      transform: 'translateX(-50%)',
-      zIndex: 12,
-    }}
-  >
-    <Image
-      src="/images/Group 204.png"
-      alt="Microsoft Innovations Club Logo"
-      width={700}
-      height={180}
-      style={{ width: '90vw', maxWidth: 800, height: 'auto', display: 'block' }}
-      priority
-    />
-  </div>
-);
 
-const Cube = () => (
-  <div
-    style={{
-      position: 'absolute',
-      left: '50%',
-      top: 'clamp(160px, 22vh, 240px)',
-      transform: 'translateX(-50%)',
-      zIndex: 11,
-    }}
-  >
-    <Image
-      src="/cube.svg"
-      alt="Microsoft Innovations Club Logo"
-      width={700}
-      height={180}
-      style={{ width: '70vw', maxWidth: 500, height: 'auto', display: 'block' }}
-      priority
-    />
-  </div>
-);
 
 interface CloudFloatOptions {
   baseTop: number;
@@ -130,12 +90,6 @@ const LandingPage = () => {
     { baseTop: 600, baseLeft: 1600, amplitude: 22, speed: 1.05, phase: 6 },
   ].map(useCloudFloat);
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
 
   // Manage animation sequence steps
   // Steps: 1=1ST.png, 2=2ND.png, 3=3RD.png (final)
@@ -200,7 +154,7 @@ const LandingPage = () => {
       <div className="w-full min-h-screen flex flex-col mt-5 relative overflow-hidden">
 
         {/* Social icons – responsive flex group, no overlap */}
-        <div className="absolute top-2 right-3 z-50 flex items-center gap-1 sm:gap-2">
+        <div className="absolute top-2 z-50 flex items-center gap-1 sm:gap-2" style={{ right: 30 }}>
           <a href="https://www.instagram.com/microsoft.innovations.vitc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <Image className="Animated-Logo" src="/insta.svg" alt="Instagram Logo" width={72} height={78}
               style={{ width: "clamp(36px, 5vw, 64px)", height: "auto", display: "block" }} priority />
@@ -220,7 +174,8 @@ const LandingPage = () => {
             id="trophy-icon"
             type="button"
             aria-label="Show leaderboard preview"
-            className="absolute bottom-8 left-8 z-50 hover:scale-110 transition-transform duration-200"
+            className="fixed z-50 hover:scale-110 transition-transform duration-200"
+            style={{ bottom: 18, left: 30 }}
             onClick={() => {
               setShowLeaderboardWidget(true);
             }}
@@ -240,10 +195,10 @@ const LandingPage = () => {
         <AnimatePresence>
           {showLeaderboardWidget && (
             <motion.div
-              className="absolute z-50"
+              className="fixed z-50"
               style={{
-                left: 24,
-                bottom: 24,
+                left: 30,
+                bottom: 30,
                 cursor: "pointer",
               }}
               initial={{ opacity: 1 }}
@@ -287,8 +242,28 @@ const LandingPage = () => {
         </AnimatePresence>
 
         <Clouds clouds={cloudPositions} />
-        <ClubLogo />
-        <Cube />
+        <div className="flex-1 flex flex-col items-center justify-center z-10 gap-6 p-6 pointer-events-none">
+          <div className="w-[60vw] max-w-[650px] mt-[70px]">
+            <Image
+              src="/images/Group 204.png"
+              alt="Microsoft Innovations Club Text"
+              width={800}
+              height={180}
+              className="w-full h-auto"
+              priority
+            />
+          </div>
+          <div className="w-[60vw] max-w-[550px] mt-[-60px]">
+            <Image
+              src="/cube.svg"
+              alt="MIC Cube"
+              width={560}
+              height={560}
+              className="w-full h-auto"
+              priority
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

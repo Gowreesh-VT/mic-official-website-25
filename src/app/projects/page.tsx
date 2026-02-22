@@ -102,7 +102,7 @@ const projects: Project[] = [
     codeUrl: 'https://github.com/micvitc/acad-assistant',
     demoUrl: 'https://drive.google.com/file/d/1p9uNLFISlp8mbNnNjeEWquToglu_Vn-A/view?usp=sharing',
     cardImage: '/images/imageno1.png',
-    previewImage: '/images/preview_ai_academic.jpg',
+    previewImage: '/project/AI_Academic_Assistant_Combined.png',
   },
   {
     id: 2,
@@ -123,7 +123,7 @@ const projects: Project[] = [
     codeUrl: 'https://github.com/TASA-Code-Craft/frontend',
     demoUrl: 'https://drive.google.com/file/d/1G1erMBSeZ0qpF-bgSSPyXWx0wLnjMlpq/view?usp=sharing',
     cardImage: '/images/imageno3.png',
-    previewImage: '/images/preview_tasa_codecraft.jpg',
+    previewImage: '/project/TASA_CodeCraft.png',
   },
 ];
 
